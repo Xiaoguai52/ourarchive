@@ -69,10 +69,9 @@ section.page.on{display:block}
 .hero-sub .hit{margin-top:6px;font-size:15px}
 .hero-sub .hit b{color:var(--stamp)}
 /* 本车原声带 · 歌单卡（与 Muse 定稿一致：一张卡 + 一个播放器 + 紧凑曲目表） */
-.ost-card{max-width:520px;margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.20)}
+.ost-card{max-width:520px;margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.20);overflow:hidden}
 .ost-cover{background:var(--paper-2);border-radius:14px 14px 0 0;overflow:hidden}
 .ost-cover img{width:100%;height:auto;display:block}
-.ost-player{position:sticky;top:52px;z-index:30;background:#fff;margin:0 -18px;padding:2px 18px 10px;box-shadow:0 14px 16px -16px rgba(35,50,70,.35)}
 .ost-inner{padding:15px 18px 13px}
 .ost-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
 .ost-title{font-size:15px;font-weight:800;letter-spacing:.1em}
@@ -311,7 +310,7 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
         <div class="ost-title">本车原声带<small>ORIGINAL SOUNDTRACK · 五月天 × 林俊杰</small></div>
         <span class="ost-chip">OST</span>
       </div>
-      <div class="ost-player"><iframe id="amPlayer" title="Apple Music 播放器" allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;overflow:hidden;background:transparent" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/cn/song/1081381266"></iframe></div>
+      <iframe id="amPlayer" title="Apple Music 播放器" allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;overflow:hidden;background:transparent" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/cn/song/1081381266"></iframe>
       <div class="ost-group ga"><b>SIDE A</b> · 五月天（张大宝）</div>
       <div class="ga-tracks">
         <div class="track on" data-amid="1081381266" role="button" tabindex="0" aria-label="播放 突然好想你">
