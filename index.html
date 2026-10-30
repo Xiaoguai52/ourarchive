@@ -68,11 +68,42 @@ section.page.on{display:block}
 .hero-sub .ost{font-size:11px;letter-spacing:.3em;color:var(--ink-faint)}
 .hero-sub .hit{margin-top:6px;font-size:15px}
 .hero-sub .hit b{color:var(--stamp)}
-/* BGM 海报 */
-.bgm{max-width:400px;margin:34px auto 0;transform:rotate(.5deg)}
-.bgm .ph img{width:100%;height:auto}
-.ost-stamp{position:absolute;right:12px;bottom:44px;z-index:4;width:52px;height:52px;border:2px solid var(--stamp);border-radius:50%;color:var(--stamp);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:.12em;transform:rotate(-10deg);background:rgba(255,255,255,.55)}
-.ost-stamp::after{content:"";position:absolute;inset:3px;border:1px solid var(--stamp);border-radius:50%;opacity:.7}
+/* 本车原声带 · 歌单卡（与 Muse 定稿一致：一张卡 + 一个播放器 + 紧凑曲目表） */
+.ost-card{max-width:520px;margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.20);overflow:hidden}
+.ost-banner{height:64px;overflow:hidden;background:var(--paper-2)}
+.ost-banner img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.ost-inner{padding:15px 18px 13px}
+.ost-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px}
+.ost-title{font-size:15px;font-weight:800;letter-spacing:.1em}
+.ost-title small{display:block;font-size:9px;letter-spacing:.28em;color:var(--ink-faint);font-weight:400;margin-top:1px}
+.ost-chip{flex:none;width:42px;height:42px;border:2px solid var(--stamp);border-radius:50%;color:var(--stamp);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11.5px;letter-spacing:.1em;transform:rotate(-9deg);background:rgba(255,255,255,.6);position:relative}
+.ost-chip::after{content:"";position:absolute;inset:3px;border:1px solid var(--stamp);border-radius:50%;opacity:.65}
+#amPlayer{width:100%;height:150px;border:0;border-radius:10px;background:var(--paper-2);display:block}
+.ost-group{margin:15px 0 3px;font-size:11px;letter-spacing:.2em;color:var(--ink-faint);font-weight:700}
+.ost-group b{font-weight:700}
+.ost-group.ga b{color:var(--ticket)}
+.ost-group.gb b{color:var(--stamp)}
+.track{display:flex;align-items:center;gap:10px;padding:8px 9px;border-radius:8px;cursor:pointer;border-bottom:1px dashed var(--line);-webkit-tap-highlight-color:transparent}
+.track:last-of-type{border-bottom:none}
+.track:hover{background:var(--paper-2)}
+.track.on{background:rgba(36,86,166,.07)}
+.t-no{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ticket);width:23px;flex:none}
+.gb-tracks .t-no{color:var(--stamp)}
+.t-name{font-weight:600;font-size:14.5px;white-space:nowrap}
+.t-artist{font-size:12px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-now{display:none;align-items:center;gap:6px;margin-left:auto;font-size:11px;color:var(--sage);font-weight:700;letter-spacing:.08em;flex:none}
+.track.on .t-now{display:flex}
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:10px}
+.eq i{width:3px;background:var(--sage);border-radius:1px;animation:eqB 0.9s ease-in-out infinite}
+.eq i:nth-child(1){height:6px}
+.eq i:nth-child(2){height:10px;animation-delay:.22s}
+.eq i:nth-child(3){height:5px;animation-delay:.45s}
+@keyframes eqB{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+@media (prefers-reduced-motion: reduce){.eq i{animation:none}}
+.t-link{margin-left:auto;color:var(--ink-faint);text-decoration:none;font-size:13px;line-height:1;padding:3px 5px;flex:none;border-radius:5px}
+.t-now + .t-link{margin-left:0}
+.t-link:hover{color:var(--ticket);background:rgba(36,86,166,.08)}
+.ost-note{margin-top:11px;border-top:1px dashed var(--line);padding-top:9px;font-size:11px;color:var(--ink-faint);letter-spacing:.05em}
 /* 车票 */
 .ticket{margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.22);overflow:hidden;position:relative}
 .ticket-top{padding:20px 22px 14px}
@@ -272,11 +303,52 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
     </div>
   </div>
 
-  <div class="polaroid bgm">
-    <span class="tape sky"></span>
-    <div class="ph"><img src="assets/bgm-collage.jpg" alt="五月天 × 林俊杰 拼图海报"></div>
-    <div class="ost-stamp">OST</div>
-    <div class="cap">SIDE B · 本车原声带 —— 五月天 × 林俊杰</div>
+  <div class="ost-card">
+    <div class="ost-banner"><img src="assets/bgm-collage.jpg" alt="五月天 × 林俊杰 拼图海报"></div>
+    <div class="ost-inner">
+      <div class="ost-head">
+        <div class="ost-title">本车原声带<small>ORIGINAL SOUNDTRACK · 五月天 × 林俊杰</small></div>
+        <span class="ost-chip">OST</span>
+      </div>
+      <iframe id="amPlayer" title="Apple Music 播放器" allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;overflow:hidden;background:transparent" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/cn/song/1081381266" loading="lazy"></iframe>
+      <div class="ost-group ga"><b>SIDE A</b> · 五月天（张大宝）</div>
+      <div class="ga-tracks">
+        <div class="track on" data-amid="1081381266" role="button" tabindex="0" aria-label="播放 突然好想你">
+          <span class="t-no">A1</span><span class="t-name">突然好想你</span><span class="t-artist">五月天</span>
+          <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
+          <a class="t-link" href="https://music.apple.com/cn/song/1081381266" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《突然好想你》">↗</a>
+        </div>
+        <div class="track" data-amid="150097714" role="button" tabindex="0" aria-label="播放 温柔">
+          <span class="t-no">A2</span><span class="t-name">温柔</span><span class="t-artist">五月天</span>
+          <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
+          <a class="t-link" href="https://music.apple.com/cn/song/150097714" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《温柔》">↗</a>
+        </div>
+        <div class="track" data-amid="1081309216" role="button" tabindex="0" aria-label="播放 干杯">
+          <span class="t-no">A3</span><span class="t-name">干杯</span><span class="t-artist">五月天</span>
+          <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
+          <a class="t-link" href="https://music.apple.com/cn/song/1081309216" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《干杯》">↗</a>
+        </div>
+      </div>
+      <div class="ost-group gb"><b>SIDE B</b> · 林俊杰（赖大宝）</div>
+      <div class="gb-tracks">
+        <div class="track" data-amid="1694849138" role="button" tabindex="0" aria-label="播放 修炼爱情">
+          <span class="t-no">B1</span><span class="t-name">修炼爱情</span><span class="t-artist">林俊杰</span>
+          <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
+          <a class="t-link" href="https://music.apple.com/cn/song/1694849138" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《修炼爱情》">↗</a>
+        </div>
+        <div class="track" data-amid="1871400637" role="button" tabindex="0" aria-label="播放 不为谁而作的歌">
+          <span class="t-no">B2</span><span class="t-name">不为谁而作的歌</span><span class="t-artist">林俊杰</span>
+          <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
+          <a class="t-link" href="https://music.apple.com/cn/song/1871400637" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《不为谁而作的歌》">↗</a>
+        </div>
+        <div class="track" data-amid="1071752115" role="button" tabindex="0" aria-label="播放 小酒窝">
+          <span class="t-no">B3</span><span class="t-name">小酒窝</span><span class="t-artist">林俊杰＆蔡卓妍</span>
+          <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
+          <a class="t-link" href="https://music.apple.com/cn/song/1071752115" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《小酒窝》">↗</a>
+        </div>
+      </div>
+      <div class="ost-note">Apple Music 订阅可听全曲，未订阅为试听</div>
+    </div>
   </div>
 
   <div class="ticket">
@@ -747,6 +819,27 @@ var ANNIS = [
     });
   }, {threshold: .3});
   sts.forEach(function(s){ io.observe(s); });
+})();
+
+/* ── 原声带曲目切换（点行换 Apple Music 嵌入曲目，强制重载） ── */
+(function(){
+  var frame = document.getElementById('amPlayer');
+  var rows = document.querySelectorAll('.track');
+  if(!frame || !rows.length) return;
+  function pick(row){
+    rows.forEach(function(r){ r.classList.remove('on'); });
+    row.classList.add('on');
+    frame.src = 'https://embed.music.apple.com/cn/song/' + row.dataset.amid;
+  }
+  rows.forEach(function(row){
+    row.addEventListener('click', function(e){
+      if(e.target.closest('.t-link')) return;
+      pick(row);
+    });
+    row.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(row); }
+    });
+  });
 })();
 </script>
 </body>
