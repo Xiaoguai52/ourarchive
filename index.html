@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我们的档案 · 武汉 → 南宁</title>
+<meta name="description" content="张世元与赖欣闻的情侣档案：一张从武汉开往南宁的专辑，装订成一本手账。2020-12-11 始发，运行中。">
+<link rel="icon" type="image/jpeg" href="assets/laixinwen-glasses.jpg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="我们的档案">
+<meta property="og:title" content="我们的档案 · 武汉 → 南宁">
+<meta property="og:description" content="一张从武汉开往南宁的专辑，装订成一本手账。2020-12-11 始发 · 运行中。">
+<meta property="og:url" content="https://xiaoguai52.github.io/ourarchive/">
+<meta property="og:image" content="https://xiaoguai52.github.io/ourarchive/assets/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="我们的档案 · 武汉 → 南宁">
+<meta name="twitter:description" content="一张从武汉开往南宁的专辑，装订成一本手账。2020-12-11 始发 · 运行中。">
+<meta name="twitter:image" content="https://xiaoguai52.github.io/ourarchive/assets/share.jpg">
+<style>
+:root{
+  --paper:#fdfdfe; --paper-2:#eef2f5; --ink:#2a3440; --ink-soft:#5b6a78; --ink-faint:#8b99a5;
+  --line:#d7dfe6;
+  --ticket:#2456a6; --stamp:#b63a2e; --mustard:#c9962a; --sage:#7d9b76; --rose:#cf9aa8; --sky:#5b97c4;
+  --hw:"Hannotate SC","Kaiti SC","STKaiti","KaiTi","楷体",cursive;
+  --mono:"SF Mono","Roboto Mono",Consolas,"Courier New",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+img{display:block;max-width:100%}
+.num{font-variant-numeric:tabular-nums}
+/* 背景：华夏夜景合照高斯模糊 + 冷白罩 */
+.bgphoto{position:fixed;inset:-42px;z-index:-2;background:url('assets/together-02-huaxia-night.jpg') center/cover no-repeat;filter:blur(18px)}
+.bgveil{position:fixed;inset:0;z-index:-1;background:rgba(237,242,246,.30)}
+.wrap{max-width:780px;margin:0 auto;padding:0 18px 64px}
+/* 页签 */
+.tabbar{position:sticky;top:0;z-index:50;background:rgba(250,252,253,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.tabbar-in{max-width:780px;margin:0 auto;padding:10px 18px;display:flex;gap:6px;align-items:center}
+.brand{font-weight:700;font-size:15px;letter-spacing:.06em;margin-right:auto;white-space:nowrap}
+.brand small{display:block;font-size:9px;letter-spacing:.28em;color:var(--ink-faint);font-weight:400}
+.tab{border:1px solid transparent;background:none;font:inherit;font-size:13.5px;color:var(--ink-soft);padding:6px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab .no{font-size:10px;color:var(--ink-faint);margin-right:3px;letter-spacing:.08em}
+.tab.on{color:var(--stamp);border-color:var(--stamp);background:rgba(182,58,46,.06);font-weight:600}
+.tab.on .no{color:var(--stamp)}
+section.page{display:none;padding-top:26px}
+section.page.on{display:block}
+.kicker{font-size:10.5px;letter-spacing:.34em;color:var(--ink-faint);text-transform:uppercase}
+.hw{font-family:var(--hw)}
+/* 拍立得 */
+.polaroid{background:#fff;padding:10px 10px 12px;border-radius:4px;box-shadow:0 10px 28px rgba(35,50,70,.20);position:relative}
+.polaroid .ph{overflow:hidden;border-radius:2px;background:var(--paper-2)}
+.polaroid .cap{font-family:var(--hw);font-size:16px;color:#3d4753;text-align:center;padding-top:8px;line-height:1.45}
+.tape{position:absolute;left:50%;top:-11px;transform:translateX(-50%) rotate(-2.5deg);width:92px;height:24px;background:rgba(125,155,118,.45);border-left:1px dashed rgba(255,255,255,.5);border-right:1px dashed rgba(255,255,255,.5);z-index:3;pointer-events:none}
+.tape.sky{background:rgba(91,151,196,.45)}
+.tape.rose{background:rgba(207,154,168,.5)}
+.tape.mustard{background:rgba(201,150,42,.42)}
+.tape.red{background:rgba(182,58,46,.38)}
+.tape.blue{background:rgba(36,86,166,.40)}
+/* 总览：专辑封面 */
+.hero{margin-top:6px}
+.hero .polaroid{transform:rotate(-.6deg)}
+.hero .ph img{width:100%;height:auto}
+.hero-badge{position:absolute;right:14px;top:16px;z-index:4;background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:6px;padding:5px 10px;font-size:11px;letter-spacing:.14em;color:var(--ticket);font-weight:600;text-align:center;line-height:1.5}
+.hero-title{text-align:center;margin:30px 0 4px;font-size:34px;font-weight:800;letter-spacing:.12em}
+.hero-sub{text-align:center;color:var(--ink-soft)}
+.hero-sub .ost{font-size:11px;letter-spacing:.3em;color:var(--ink-faint)}
+.hero-sub .hit{margin-top:6px;font-size:15px}
+.hero-sub .hit b{color:var(--stamp)}
+/* BGM 海报 */
+.bgm{max-width:400px;margin:34px auto 0;transform:rotate(.5deg)}
+.bgm .ph img{width:100%;height:auto}
+.ost-stamp{position:absolute;right:12px;bottom:44px;z-index:4;width:52px;height:52px;border:2px solid var(--stamp);border-radius:50%;color:var(--stamp);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;letter-spacing:.12em;transform:rotate(-10deg);background:rgba(255,255,255,.55)}
+.ost-stamp::after{content:"";position:absolute;inset:3px;border:1px solid var(--stamp);border-radius:50%;opacity:.7}
+/* 车票 */
+.ticket{margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.22);overflow:hidden;position:relative}
+.ticket-top{padding:20px 22px 14px}
+.ticket-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}
+.ticket-head .tt{font-size:12px;letter-spacing:.3em;color:var(--ink-soft)}
+.ticket-no{font-family:var(--mono);color:var(--stamp);font-weight:700;font-size:15px;letter-spacing:.06em}
+.route{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 4px}
+.route .city{font-size:31px;font-weight:800;letter-spacing:.08em;line-height:1.15;text-align:center}
+.route .city small{display:block;font-size:9.5px;letter-spacing:.3em;color:var(--ink-faint);font-weight:400;margin-top:3px}
+.route .arrow{flex:1;margin:0 14px;border-top:2px solid var(--ink);position:relative;min-width:36px}
+.route .arrow::after{content:"";position:absolute;right:-1px;top:-6px;border-left:10px solid var(--ink);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.passengers{display:flex;gap:12px;margin-top:14px}
+.passenger{flex:1;display:flex;align-items:center;gap:10px;background:var(--paper-2);border-radius:10px;padding:9px 12px;min-width:0}
+.passenger img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.18);flex:none}
+.passenger .nm{font-weight:700;font-size:15px;line-height:1.3;white-space:nowrap}
+.passenger .nn{font-size:11.5px;color:var(--ink-soft);white-space:nowrap}
+.tear{border-top:2px dashed #c3ced7;position:relative;margin-top:16px}
+.ticket-stub{padding:13px 22px 18px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.stub-item{font-size:12px;color:var(--ink-faint);letter-spacing:.06em}
+.stub-item b{display:block;font-size:15.5px;color:var(--ink);letter-spacing:.03em;margin-top:1px}
+.stub-item b .run{color:var(--sage)}
+.stub-item b .days{font-family:var(--mono);color:var(--ticket)}
+/* 豆豆小块 */
+.doudou{margin:26px auto 0;background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);box-shadow:0 8px 20px rgba(35,50,70,.12)}
+.doudou img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+.doudou .t1{font-weight:700;font-size:15px}
+.doudou .t2{font-size:12.5px;color:var(--ink-soft)}
+.doudou .go{margin-left:auto;color:var(--ticket);font-size:13px;white-space:nowrap}
+/* 相册架 */
+.shelf-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.shelf-head h2{font-size:21px;letter-spacing:.06em}
+.shelf-head span{font-size:12.5px;color:var(--ink-soft)}
+.shelf{display:grid;grid-template-columns:1fr 1fr;gap:20px 16px}
+.book{cursor:pointer;background:none;border:none;font:inherit;text-align:left;padding:0}
+.book .polaroid{transition:transform .18s ease}
+.book:hover .polaroid{transform:translateY(-3px) rotate(-.4deg)}
+.book .ph img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.book-meta{display:flex;align-items:center;gap:7px;margin-top:9px;padding:0 2px}
+.chip{font-size:10px;letter-spacing:.1em;color:#fff;border-radius:4px;padding:2px 6px;font-weight:700;white-space:nowrap}
+.chip.sage{background:var(--sage)}.chip.mustard{background:var(--mustard)}.chip.sky{background:var(--sky)}.chip.red{background:var(--stamp)}.chip.blue{background:var(--ticket)}.chip.rose{background:var(--rose)}
+.book-name{font-weight:700;font-size:15px;line-height:1.35}
+.book-info{font-size:12px;color:var(--ink-soft);padding:0 2px}
+.count-stamp{display:inline-flex;align-items:center;justify-content:center;border:1.6px solid var(--stamp);color:var(--stamp);border-radius:50%;width:34px;height:34px;font-size:11px;font-weight:800;transform:rotate(-8deg);margin-left:auto;flex:none;background:rgba(255,255,255,.6)}
+/* 打开的相册 */
+.bookview-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.backbtn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:13.5px;cursor:pointer;color:var(--ink)}
+.bookview-head h2{font-size:20px;letter-spacing:.05em}
+.bookview-sub{color:var(--ink-soft);font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 16px}
+.grid .polaroid{cursor:zoom-in}
+.grid .polaroid:nth-child(odd){transform:rotate(-.7deg)}
+.grid .polaroid:nth-child(even){transform:rotate(.6deg)}
+.grid .ph img{width:100%;aspect-ratio:1/1.06;object-fit:cover}
+/* 故事铁路 */
+.rail{position:relative;margin:10px 0 0 8px;padding-left:34px}
+.rail::before{content:"";position:absolute;left:15px;top:14px;bottom:26px;width:2.6px;background:repeating-linear-gradient(var(--ticket) 0 9px,transparent 9px 15px);opacity:.55}
+.station{position:relative;padding:0 0 30px}
+.station .dot{position:absolute;left:-26.5px;top:16px;width:15px;height:15px;border-radius:50%;background:#fff;border:3.4px solid var(--ticket);z-index:1}
+.station-card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:12px;padding:15px 17px;box-shadow:0 8px 20px rgba(35,50,70,.10);position:relative}
+.station-date{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.08em}
+.station-name{font-size:18.5px;font-weight:800;letter-spacing:.05em;margin:1px 0 2px}
+.station-desc{font-size:14px;color:var(--ink-soft)}
+.station .polaroid{max-width:300px;margin-top:13px}
+.station .polaroid .ph img{width:100%;height:auto}
+.stamp{position:absolute;right:13px;top:12px;width:56px;height:56px;border-radius:50%;border:2.2px solid;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:13.5px;line-height:1.25;letter-spacing:.1em;transform:rotate(-9deg);background:rgba(255,255,255,.5)}
+.stamp::after{content:"";position:absolute;inset:3.5px;border:1px solid;border-radius:50%;opacity:.65}
+.stamp.red{color:var(--stamp);border-color:var(--stamp)}.stamp.red::after{border-color:var(--stamp)}
+.stamp.mustard{color:var(--mustard);border-color:var(--mustard)}.stamp.mustard::after{border-color:var(--mustard)}
+.stamp.sage{color:var(--sage);border-color:var(--sage)}.stamp.sage::after{border-color:var(--sage)}
+.stamp.rose{color:var(--rose);border-color:var(--rose)}.stamp.rose::after{border-color:var(--rose)}
+.stamp.sky{color:var(--sky);border-color:var(--sky)}.stamp.sky::after{border-color:var(--sky)}
+.station.final .dot{border-style:dashed;background:transparent}
+.station.final .station-card{background:rgba(255,255,255,.55);border-style:dashed;box-shadow:none}
+/* 纪念日 */
+.anni{display:flex;flex-direction:column;gap:18px}
+.anni-card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;align-items:center;gap:18px;box-shadow:0 8px 20px rgba(35,50,70,.10)}
+.postmark{flex:none;width:96px;height:96px;border-radius:50%;border:2.4px dashed var(--ticket);color:var(--ticket);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-6deg);background:rgba(255,255,255,.6);position:relative}
+.postmark::after{content:"";position:absolute;inset:5px;border:1.2px solid var(--ticket);border-radius:50%;opacity:.55}
+.postmark .d{font-family:var(--mono);font-size:29px;font-weight:700;line-height:1}
+.postmark .u{font-size:11px;letter-spacing:.3em;margin-top:3px}
+.anni-info .t{font-size:18px;font-weight:800;letter-spacing:.04em}
+.anni-info .s{font-size:13.5px;color:var(--ink-soft)}
+.anni-info .date{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);letter-spacing:.06em}
+footer{margin-top:52px;text-align:center;color:var(--ink-soft);font-size:12px;letter-spacing:.14em}
+footer .hw{font-size:15px;color:var(--ink-soft)}
+/* 封面轮播（固定画框 3:4，首张彩带照完整不裁） */
+.hero .ph{position:relative;aspect-ratio:3/4}
+.hero .ph img.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.hero .ph img.slide.on{opacity:1}
+.hero-dots{display:flex;gap:6px;justify-content:center;padding-top:9px}
+.hero-dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .3s;cursor:pointer}
+.hero-dots i.on{background:var(--stamp)}
+/* 相册封面「特别收录」印章 */
+.book-seal{position:absolute;right:9px;top:11px;z-index:4;width:45px;height:45px;border:2px solid #b76e7e;border-radius:50%;color:#b76e7e;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:10.5px;line-height:1.25;letter-spacing:.08em;transform:rotate(-9deg);background:rgba(255,255,255,.55)}
+.book-seal::after{content:"";position:absolute;inset:3px;border:1px solid #b76e7e;border-radius:50%;opacity:.65}
+/* 足迹地图 */
+.mapcard{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:12px;padding:15px 16px 8px;box-shadow:0 8px 20px rgba(35,50,70,.10);margin-bottom:28px}
+.map-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.map-title{font-size:17px;font-weight:800;letter-spacing:.06em}
+.map-en{font-size:9.5px;letter-spacing:.26em;color:var(--ink-faint)}
+.mapcard svg{width:100%;height:auto;display:block}
+.map-note{font-size:15.5px;color:var(--ink-soft);text-align:right;padding:0 4px 5px}
+/* 始发车票图形卡 */
+.dep-ticket{margin-top:13px;max-width:300px;background:var(--paper-2);border:1.4px solid var(--ticket);border-radius:8px;padding:10px 13px 11px;color:var(--ticket)}
+.dep-ticket .r1{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.05em}
+.dep-ticket .r2{font-size:16.5px;font-weight:800;letter-spacing:.1em;margin:2px 0 0}
+.dep-ticket .r3{border-top:1.6px dashed rgba(36,86,166,.5);margin-top:7px;padding-top:6px;font-size:11.5px;letter-spacing:.03em}
+/* 年度报告 */
+.reports{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rep{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px 12px;position:relative;box-shadow:0 6px 16px rgba(35,50,70,.08)}
+.rep .yr{font-size:23px;font-weight:800;letter-spacing:.03em;line-height:1.2}
+.rep .yr small{font-size:10px;letter-spacing:.22em;color:var(--ink-faint);font-weight:400;margin-left:7px}
+.rep .rows{margin-top:5px;font-size:13px;color:var(--ink-soft);display:flex;gap:14px;flex-wrap:wrap}
+.rep .rows b{color:var(--ink);font-family:var(--mono);font-weight:700}
+.rep .ev{margin-top:2px;font-size:13.5px}
+.rep .stubline{border-top:2px dashed #c3ced7;margin-top:9px;padding-top:6px;font-size:11px;color:var(--ink-faint);letter-spacing:.08em}
+.rep.pending{border-style:dashed;background:rgba(255,255,255,.55);box-shadow:none}
+.rep-stamp{position:absolute;right:11px;top:11px;border:1.6px solid;border-radius:5px;padding:1px 7px;font-size:11px;font-weight:800;letter-spacing:.14em;transform:rotate(-6deg);background:rgba(255,255,255,.5)}
+.report-note{font-size:12px;color:var(--ink-faint);margin-top:11px;line-height:1.7}
+/* 纪念日行动卡 */
+.anni-card{flex-wrap:wrap}
+.advice{flex:1 1 100%;border-top:1.6px dashed #c3ced7;margin-top:13px;padding-top:10px}
+.advice .lab{font-size:11px;letter-spacing:.22em;color:var(--stamp);font-weight:700;margin-bottom:4px}
+.advice ul{list-style:none}
+.advice li{font-size:13.5px;color:var(--ink-soft);padding-left:16px;position:relative;line-height:1.65}
+.advice li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--mustard)}
+/* 动效：站章盖下 + 翻纸过渡（JS 加 .anim 后生效；reduced-motion 时禁用） */
+@media (prefers-reduced-motion: no-preference){
+  body.anim .station .stamp{opacity:0}
+  body.anim .station.stamped .stamp{animation:stampIn .45s cubic-bezier(.2,1.55,.4,1) both;animation-delay:var(--sd,0s)}
+  @keyframes stampIn{0%{opacity:0;transform:rotate(-27deg) scale(1.75)}55%{opacity:1;transform:rotate(-6.5deg) scale(.93)}100%{opacity:1;transform:rotate(-9deg) scale(1)}}
+  #bookView.flip{animation:pageIn .38s ease both}
+  @keyframes pageIn{from{opacity:0;transform:perspective(900px) rotateY(7deg) translateX(14px)}to{opacity:1;transform:none}}
+  .grid .polaroid{animation:fadeIn .35s ease both}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .lb.on img{animation:lbIn .3s ease both}
+  @keyframes lbIn{from{opacity:0;transform:scale(.96) rotate(-.6deg)}to{opacity:1;transform:none}}
+}
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(16,22,30,.93);z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px 14px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:76vh;object-fit:contain;border:8px solid #fff;border-bottom-width:8px;border-radius:3px;box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.lb .lbcap{color:#fff;font-family:var(--hw);font-size:17.5px;margin-top:15px;text-align:center}
+.lb .lbcount{color:rgba(255,255,255,.65);font-size:12.5px;margin-top:3px;font-family:var(--mono)}
+.lb button{position:absolute;background:rgba(255,255,255,.14);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:19px;cursor:pointer;line-height:1}
+.lb .close{top:14px;right:14px}
+.lb .prev{left:10px;top:50%;transform:translateY(-50%)}
+.lb .next{right:10px;top:50%;transform:translateY(-50%)}
+@media (max-width:560px){
+  .route .city{font-size:25px}
+  .hero-title{font-size:28px}
+  .passengers{flex-direction:column}
+  .station .polaroid{max-width:250px}
+  .tabbar-in{padding:9px 10px;gap:2px}
+  .tab{padding:5px 6px;font-size:12px}
+  .tab .no{display:none}
+  .brand{font-size:13px;margin-right:6px}
+  .brand small{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bgphoto"></div>
+<div class="bgveil"></div>
+
+<header class="tabbar">
+  <div class="tabbar-in">
+    <div class="brand">我们的档案<small>OUR ARCHIVE · 武汉 → 南宁</small></div>
+    <button class="tab on" data-tab="home"><span class="no">01</span>总览</button>
+    <button class="tab" data-tab="albums"><span class="no">02</span>相册</button>
+    <button class="tab" data-tab="story"><span class="no">03</span>故事</button>
+    <button class="tab" data-tab="anni"><span class="no">04</span>纪念日</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ══════════ 总览 ══════════ -->
+<section class="page on" id="page-home">
+  <div class="hero">
+    <div class="polaroid">
+      <span class="tape rose"></span>
+      <div class="hero-badge">武汉 → 南宁<br>SIDE A</div>
+      <div class="ph" id="heroPh">
+        <img class="slide on" src="assets/laixinwen-confetti-2022.jpg" alt="赖欣闻 · 彩带里的照片">
+        <img class="slide" src="assets/together-02-huaxia-night.jpg" alt="华夏印务中心门口的夜晚" loading="lazy">
+        <img class="slide" src="assets/together-07-graduation.jpg" alt="毕业季合照" loading="lazy">
+        <img class="slide" src="assets/together-06-birthday-cake.jpg" alt="一周年这天的小蛋糕" loading="lazy">
+      </div>
+      <div class="hero-dots" id="heroDots"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="cap">我们的档案 · 封面</div>
+    </div>
+    <h1 class="hero-title">我们的档案</h1>
+    <div class="hero-sub">
+      <div class="ost">ORIGINAL SOUNDTRACK · 武汉 → 南宁</div>
+      <div class="hit">主打 · <b>五月天</b>（张大宝）× <b>林俊杰</b>（赖大宝）</div>
+    </div>
+  </div>
+
+  <div class="polaroid bgm">
+    <span class="tape sky"></span>
+    <div class="ph"><img src="assets/bgm-collage.jpg" alt="五月天 × 林俊杰 拼图海报"></div>
+    <div class="ost-stamp">OST</div>
+    <div class="cap">SIDE B · 本车原声带 —— 五月天 × 林俊杰</div>
+  </div>
+
+  <div class="ticket">
+    <div class="ticket-top">
+      <div class="ticket-head">
+        <span class="tt">双人联程车票</span>
+        <span class="ticket-no">No.20201211</span>
+      </div>
+      <div class="route">
+        <div class="city">武汉<small>WUHAN</small></div>
+        <div class="arrow"></div>
+        <div class="city">南宁<small>NANNING</small></div>
+      </div>
+      <div class="passengers">
+        <div class="passenger">
+          <img src="assets/zhangshiyuan-outdoor.jpg" alt="张世元头像">
+          <div><div class="nm">张世元</div><div class="nn">张大宝 · SHIYUAN ZHANG</div></div>
+        </div>
+        <div class="passenger">
+          <img src="assets/laixinwen-glasses.jpg" alt="赖欣闻头像">
+          <div><div class="nm">赖欣闻</div><div class="nn">赖大宝 · XINWEN LAI</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="tear"></div>
+    <div class="ticket-stub">
+      <div class="stub-item">始发日期<b>2020-12-11</b></div>
+      <div class="stub-item">里程<b>第 <span class="days" id="dayCount">—</span> 天</b></div>
+      <div class="stub-item">状态<b><span class="run">● 运行中</span></b></div>
+    </div>
+  </div>
+
+  <a class="doudou" href="https://jindoudou.pages.dev" target="_blank" rel="noopener">
+    <img src="assets/doudou-avatar.png" alt="金豆豆头像">
+    <div>
+      <div class="t1">家里的小成员 · 金豆豆</div>
+      <div class="t2">三岁多的蓝猫，也有一本自己的档案</div>
+    </div>
+    <span class="go">去看看 →</span>
+  </a>
+</section>
+
+<!-- ══════════ 相册 ══════════ -->
+<section class="page" id="page-albums">
+  <div id="shelfView">
+    <div class="shelf-head"><h2>相册</h2><span id="shelfCount"></span></div>
+    <div class="shelf" id="shelf"></div>
+  </div>
+  <div id="bookView" style="display:none">
+    <div class="bookview-head">
+      <button class="backbtn" id="backBtn">← 回到书架</button>
+      <h2 id="bookTitle"></h2>
+    </div>
+    <div class="bookview-sub" id="bookSub"></div>
+    <div class="grid" id="bookGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════ 故事 ══════════ -->
+<section class="page" id="page-story">
+  <div class="shelf-head"><h2>我们的故事</h2><span>武汉 → 南宁 · 一路的站</span></div>
+
+  <div class="mapcard">
+    <div class="map-head"><span class="map-title">足迹地图</span><span class="map-en">FOOTPRINT · 武汉 → 南宁</span></div>
+    <svg viewBox="0 0 340 176" role="img" aria-label="足迹地图：武汉出发，经一周年、毕业、演唱会，驶向南宁">
+      <path d="M38,128 C70,100 92,90 118,84 C148,77 166,102 188,112 C214,124 228,86 248,66" fill="none" stroke="#2456a6" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M248,66 C268,48 290,76 306,94" fill="none" stroke="#2456a6" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 6" opacity=".75"/>
+      <circle cx="118" cy="84" r="6.5" fill="#fff" stroke="#7d9b76" stroke-width="3"/>
+      <circle cx="188" cy="112" r="6.5" fill="#fff" stroke="#b76e7e" stroke-width="3"/>
+      <circle cx="248" cy="66" r="6.5" fill="#fff" stroke="#5b97c4" stroke-width="3"/>
+      <circle cx="38" cy="128" r="13" fill="rgba(255,255,255,.75)" stroke="#2456a6" stroke-width="2.6"/>
+      <circle cx="38" cy="128" r="8.5" fill="none" stroke="#2456a6" stroke-width="1.1" opacity=".6"/>
+      <circle cx="306" cy="94" r="11" fill="none" stroke="#2456a6" stroke-width="2.2" stroke-dasharray="4 4"/>
+      <text x="118" y="64" text-anchor="middle" font-size="10.5" fill="#5b6a78">2021 · 一周年</text>
+      <text x="188" y="142" text-anchor="middle" font-size="10.5" fill="#5b6a78">2022 · 毕业</text>
+      <text x="248" y="45" text-anchor="middle" font-size="10.5" fill="#5b6a78">2023 · 演唱会</text>
+      <text x="38" y="160" text-anchor="middle" font-size="13" font-weight="800" fill="#2a3440">武汉</text>
+      <text x="306" y="124" text-anchor="middle" font-size="13" font-weight="800" fill="#2a3440">南宁</text>
+      <text x="306" y="139" text-anchor="middle" font-size="9.5" fill="#8b99a5">进行中</text>
+    </svg>
+    <div class="map-note hw">这条线还会继续长</div>
+  </div>
+
+  <div class="rail">
+
+    <div class="station">
+      <span class="dot"></span>
+      <div class="station-card">
+        <div class="stamp red">华夏<br>站</div>
+        <div class="station-date">大学时代 · 武汉</div>
+        <div class="station-name">华夏站</div>
+        <div class="station-desc">在武汉华夏理工学院相识。故事从这里开始。</div>
+        <div class="polaroid">
+          <span class="tape sage"></span>
+          <div class="ph"><img src="assets/together-01-grass.jpg" alt="2021 年夏天的草坪合照"></div>
+          <div class="cap">2021 年 · 夏</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <span class="dot"></span>
+      <div class="station-card">
+        <div class="stamp mustard">始发<br>站</div>
+        <div class="station-date">2020-12-11</div>
+        <div class="station-name">始发站 · 正式在一起</div>
+        <div class="station-desc">这一天，这趟车正式发车。</div>
+        <div class="dep-ticket">
+          <div class="r1"><span>始发站 · DEPARTURE</span><span>No.20201211</span></div>
+          <div class="r2">武汉 → 南宁</div>
+          <div class="r3">2020.12.11 发车 · 乘客 张世元 / 赖欣闻</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <span class="dot"></span>
+      <div class="station-card">
+        <div class="stamp sage">一周<br>年站</div>
+        <div class="station-date">2021-12-11</div>
+        <div class="station-name">一周年站</div>
+        <div class="station-desc">在一起一周年。这张照片就摄于一周年当晚。</div>
+        <div class="polaroid">
+          <span class="tape mustard"></span>
+          <div class="ph"><img src="assets/together-06-birthday-cake.jpg" alt="一周年这天的小蛋糕"></div>
+          <div class="cap">一周年这天的小蛋糕</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <span class="dot"></span>
+      <div class="station-card">
+        <div class="stamp rose">毕业<br>站</div>
+        <div class="station-date">2022-06-07</div>
+        <div class="station-name">毕业站 · 一起毕业</div>
+        <div class="station-desc">武汉华夏理工学院毕业季，一起走出校园。</div>
+        <div class="polaroid">
+          <span class="tape sky"></span>
+          <div class="ph"><img src="assets/together-07-graduation.jpg" alt="毕业季合照"></div>
+          <div class="cap">她按着他的头说，毕业啦</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station">
+      <span class="dot"></span>
+      <div class="station-card">
+        <div class="stamp sky">演唱<br>会站</div>
+        <div class="station-date">2023-06-25</div>
+        <div class="station-name">演唱会站</div>
+        <div class="station-desc">一起去听了一场演唱会。</div>
+        <div class="polaroid">
+          <span class="tape red"></span>
+          <div class="ph"><img src="assets/together-09-concert.jpg" alt="演唱会合照"></div>
+          <div class="cap">荧光棒的光里</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="station final">
+      <span class="dot"></span>
+      <div class="station-card">
+        <div class="station-date">至今 · 南宁</div>
+        <div class="station-name">南宁站 · 进行中</div>
+        <div class="station-desc">现在两个人在南宁生活、工作。这一站，还在继续。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="shelf-head" style="margin-top:36px"><h2>年度报告</h2><span>一年一封存</span></div>
+  <div class="reports">
+    <div class="rep">
+      <span class="rep-stamp" style="color:var(--ticket);border-color:var(--ticket)">已封存</span>
+      <div class="yr">2021<small>第 1 年</small></div>
+      <div class="rows"><span>里程 <b>366</b> 天</span><span>照片 <b>6</b> 张</span></div>
+      <div class="ev">在一起一周年</div>
+      <div class="stubline">存根 · 武汉 → 南宁</div>
+    </div>
+    <div class="rep">
+      <span class="rep-stamp" style="color:var(--ticket);border-color:var(--ticket)">已封存</span>
+      <div class="yr">2022<small>第 2 年</small></div>
+      <div class="rows"><span>里程 <b>731</b> 天</span><span>照片 <b>5</b> 张</span></div>
+      <div class="ev">一起毕业</div>
+      <div class="stubline">存根 · 武汉 → 南宁</div>
+    </div>
+    <div class="rep">
+      <span class="rep-stamp" style="color:var(--ticket);border-color:var(--ticket)">已封存</span>
+      <div class="yr">2023<small>第 3 年</small></div>
+      <div class="rows"><span>里程 <b>1096</b> 天</span><span>照片 <b>1</b> 张</span></div>
+      <div class="ev">一起去听演唱会</div>
+      <div class="stubline">存根 · 武汉 → 南宁</div>
+    </div>
+    <div class="rep pending">
+      <span class="rep-stamp" style="color:var(--ink-faint);border-color:var(--ink-faint)">待补</span>
+      <div class="yr">2024<small>第 4 年</small></div>
+      <div class="rows"><span>里程 <b>1462</b> 天</span><span>照片 <b>待补</b></span></div>
+      <div class="ev">这一年的照片还没补进来</div>
+      <div class="stubline">存根 · 武汉 → 南宁</div>
+    </div>
+    <div class="rep pending">
+      <span class="rep-stamp" style="color:var(--ink-faint);border-color:var(--ink-faint)">待补</span>
+      <div class="yr">2025<small>第 5 年</small></div>
+      <div class="rows"><span>里程 <b>1827</b> 天</span><span>照片 <b>待补</b></span></div>
+      <div class="ev">这一年的照片还没补进来</div>
+      <div class="stubline">存根 · 武汉 → 南宁</div>
+    </div>
+    <div class="rep">
+      <span class="rep-stamp" style="color:var(--stamp);border-color:var(--stamp)">进行中</span>
+      <div class="yr">2026<small>第 6 年</small></div>
+      <div class="rows"><span>里程 <b>2150</b> 天</span><span>截至 2026-10-30</span></div>
+      <div class="ev">这一年还在继续，年底封存</div>
+      <div class="stubline">存根 · 武汉 → 南宁</div>
+    </div>
+  </div>
+  <div class="report-note">每年 12 月 11 日（周年日）自动封存一版新报告。另有 3 张照片未标注年份，未计入以上各年。</div>
+</section>
+
+<!-- ══════════ 纪念日 ══════════ -->
+<section class="page" id="page-anni">
+  <div class="shelf-head"><h2>纪念日</h2><span>下一站预告</span></div>
+  <div class="anni" id="anniList"></div>
+</section>
+
+<footer>
+  <div class="hw">武汉 → 南宁 · 这趟车还在开</div>
+  <div style="margin-top:4px">我们的档案 · OUR ARCHIVE</div>
+</footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <button class="close" id="lbClose" aria-label="关闭">✕</button>
+  <button class="prev" id="lbPrev" aria-label="上一张">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="next" id="lbNext" aria-label="下一张">›</button>
+  <div class="lbcap" id="lbCap"></div>
+  <div class="lbcount" id="lbCount"></div>
+</div>
+
+<script>
+/* ── 数据（全部为真实资料，无虚构） ── */
+var BOOKS = [
+  { name:"家里的小成员", tag:"特别收录", color:"rose", period:"金豆豆 · 蓝猫", seal:true,
+    cover:"assets/doudou-1.jpg",
+    photos:[
+      {src:"assets/doudou-1.jpg", cap:"模范乘客 · 头像原图"},
+      {src:"assets/doudou-2.jpg", cap:"柜子上的守门员"},
+      {src:"assets/doudou-3.jpg", cap:"抬头杀 · 金瞳正脸"},
+      {src:"assets/doudou-4.jpg", cap:"柜子上睡到没电"},
+      {src:"assets/doudou-5.jpg", cap:"坐车也要发表意见"},
+      {src:"assets/doudou-6.jpg", cap:"夜车里的小好奇"}
+    ]},
+  { name:"赖大宝", tag:"个人档案", color:"rose", period:"个人档案",
+    cover:"assets/laixinwen-field.jpg",
+    photos:[
+      {src:"assets/laixinwen-glasses.jpg", cap:"戴眼镜的赖大宝"},
+      {src:"assets/laixinwen-field.jpg", cap:"操场上的赖大宝"},
+      {src:"assets/laixinwen-confetti-2022.jpg", cap:"彩带里的赖大宝 · 2022-07-06"}
+    ]},
+  { name:"张大宝", tag:"个人档案", color:"blue", period:"个人档案",
+    cover:"assets/zhangshiyuan-outdoor.jpg",
+    photos:[
+      {src:"assets/zhangshiyuan-outdoor.jpg", cap:"绿荫下的张大宝"},
+      {src:"assets/zhangshiyuan-selfie.jpg", cap:"托下巴的张大宝"}
+    ]},
+  { name:"2021 · 华夏的初夏", tag:"TRACK 01", color:"sage", period:"2021 年 6 月",
+    cover:"assets/together-02-huaxia-night.jpg",
+    photos:[
+      {src:"assets/together-02-huaxia-night.jpg", cap:"华夏印务中心门口的夜晚 · 2021-06-13"},
+      {src:"assets/together-01-grass.jpg", cap:"躺在草坪上 · 2021-06-11"},
+      {src:"assets/together-03-night-close.jpg", cap:"贴贴的夜晚 · 2021-06-24"},
+      {src:"assets/together-04-night-close2.jpg", cap:"同一个夜晚，再靠近一点 · 2021-06-24"}
+    ]},
+  { name:"从秋天到一周年", tag:"TRACK 02", color:"mustard", period:"2021 年",
+    cover:"assets/together-05-night-lean.jpg",
+    photos:[
+      {src:"assets/together-05-night-lean.jpg", cap:"靠着头就不想起来 · 2021-10-25"},
+      {src:"assets/together-06-birthday-cake.jpg", cap:"一周年这天的小蛋糕 · 2021-12-11"}
+    ]},
+  { name:"2022 · 毕业季", tag:"TRACK 03", color:"sky", period:"2022 年 6 月",
+    cover:"assets/together-07-graduation.jpg",
+    photos:[
+      {src:"assets/together-07-graduation.jpg", cap:"她按着他的头说，毕业啦 · 2022-06-07"},
+      {src:"assets/together-08-graduation-polaroid.jpg", cap:"拍立得里的「毕业啦」 · 2022-06-05"}
+    ]},
+  { name:"2023 · 一起去听演唱会", tag:"TRACK 04", color:"red", period:"2023-06-25",
+    cover:"assets/together-09-concert.jpg",
+    photos:[
+      {src:"assets/together-09-concert.jpg", cap:"荧光棒的光里 · 2023-06-25"}
+    ]},
+  { name:"拍立得收藏", tag:"TRACK 05", color:"blue", period:"日期待补",
+    cover:"assets/together-10-polaroids.jpg",
+    photos:[
+      {src:"assets/together-10-polaroids.jpg", cap:"桌上立着的两张拍立得 · 日期待补"}
+    ]}
+];
+var TAPES = ["sage","mustard","sky","rose","red","blue"];
+
+/* ── 页签切换 ── */
+var tabs = document.querySelectorAll('.tab');
+tabs.forEach(function(t){
+  t.addEventListener('click', function(){
+    tabs.forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on');
+    document.querySelectorAll('section.page').forEach(function(p){p.classList.remove('on')});
+    document.getElementById('page-'+t.dataset.tab).classList.add('on');
+    window.scrollTo(0,0);
+  });
+});
+
+/* ── 在一起天数（2020-12-11 含首尾） ── */
+(function(){
+  var start = new Date(2020,11,11);
+  var now = new Date(); var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var n = Math.round((today - start)/86400000) + 1;
+  document.getElementById('dayCount').textContent = n;
+})();
+
+/* ── 相册架 ── */
+var shelf = document.getElementById('shelf');
+var totalPhotos = BOOKS.reduce(function(s,b){return s+b.photos.length},0);
+document.getElementById('shelfCount').textContent = '共 '+BOOKS.length+' 本相册 · '+totalPhotos+' 张照片';
+BOOKS.forEach(function(b, bi){
+  var btn = document.createElement('button');
+  btn.className = 'book';
+  btn.innerHTML =
+    '<div class="polaroid"><span class="tape '+b.color+'"></span>' +
+    (b.seal ? '<span class="book-seal">特别<br>收录</span>' : '') +
+    '<div class="ph"><img src="'+b.cover+'" alt="'+b.name+' 封面"></div></div>' +
+    '<div class="book-meta"><span class="chip '+b.color+'">'+b.tag+'</span>' +
+    '<span class="count-stamp">'+b.photos.length+'张</span></div>' +
+    '<div class="book-name" style="padding:0 2px">'+b.name+'</div>' +
+    '<div class="book-info">'+b.period+' · '+b.photos.length+' 张照片</div>';
+  btn.addEventListener('click', function(){ openBook(bi); });
+  shelf.appendChild(btn);
+});
+
+/* ── 打开相册 ── */
+var currentBook = 0, currentPhoto = 0;
+function openBook(bi){
+  currentBook = bi;
+  var b = BOOKS[bi];
+  document.getElementById('shelfView').style.display = 'none';
+  var bv = document.getElementById('bookView');
+  bv.style.display = 'block';
+  bv.classList.remove('flip'); void bv.offsetWidth; bv.classList.add('flip');
+  document.getElementById('bookTitle').textContent = b.name;
+  document.getElementById('bookSub').textContent = b.tag+' · '+b.period+' · 共 '+b.photos.length+' 张';
+  var grid = document.getElementById('bookGrid');
+  grid.innerHTML = '';
+  b.photos.forEach(function(p, pi){
+    var d = document.createElement('div');
+    d.className = 'polaroid';
+    d.innerHTML = '<span class="tape '+TAPES[pi % TAPES.length]+'"></span>' +
+      '<div class="ph"><img src="'+p.src+'" alt="'+p.cap+'"></div>' +
+      '<div class="cap">'+p.cap+'</div>';
+    d.addEventListener('click', function(){ openLb(pi); });
+    grid.appendChild(d);
+  });
+  window.scrollTo(0,0);
+}
+document.getElementById('backBtn').addEventListener('click', function(){
+  document.getElementById('bookView').style.display = 'none';
+  document.getElementById('shelfView').style.display = 'block';
+  window.scrollTo(0,0);
+});
+
+/* ── Lightbox ── */
+var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'),
+    lbCap = document.getElementById('lbCap'), lbCount = document.getElementById('lbCount');
+function openLb(pi){
+  currentPhoto = pi; renderLb(); lb.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function renderLb(){
+  var b = BOOKS[currentBook], p = b.photos[currentPhoto];
+  lbImg.src = p.src; lbImg.alt = p.cap;
+  lbCap.textContent = p.cap;
+  lbCount.textContent = '第 '+(currentPhoto+1)+' / 共 '+b.photos.length+' 张 · '+b.name;
+  var multi = b.photos.length > 1;
+  document.getElementById('lbPrev').style.display = multi ? 'block' : 'none';
+  document.getElementById('lbNext').style.display = multi ? 'block' : 'none';
+}
+function closeLb(){ lb.classList.remove('on'); document.body.style.overflow = ''; }
+function stepLb(d){
+  var n = BOOKS[currentBook].photos.length;
+  currentPhoto = (currentPhoto + d + n) % n; renderLb();
+}
+document.getElementById('lbClose').addEventListener('click', closeLb);
+document.getElementById('lbPrev').addEventListener('click', function(e){ e.stopPropagation(); stepLb(-1); });
+document.getElementById('lbNext').addEventListener('click', function(e){ e.stopPropagation(); stepLb(1); });
+lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+document.addEventListener('keydown', function(e){
+  if(!lb.classList.contains('on')) return;
+  if(e.key === 'Escape') closeLb();
+  if(e.key === 'ArrowLeft') stepLb(-1);
+  if(e.key === 'ArrowRight') stepLb(1);
+});
+
+/* ── 纪念日倒计时 ── */
+var ANNIS = [
+  {title:"赖欣闻生日", sub:"满 26 岁", date:"2026-11-09", y:2026, m:10, d:9,
+   advice:["回南宁当天吃顿好的", "手写一张车票样式的卡片", "留意林俊杰演唱会开票"]},
+  {title:"在一起六周年", sub:"始发纪念日", date:"2026-12-11", y:2026, m:11, d:11,
+   advice:["把 2024、2025 年的照片补进档案", "拍一组新合照封存进年度报告"]},
+  {title:"张世元生日", sub:"满 28 岁", date:"2027-02-10", y:2027, m:1, d:10,
+   advice:["让赖大宝请你吃顿好的"]}
+];
+(function(){
+  var now = new Date(); var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var list = document.getElementById('anniList');
+  ANNIS.forEach(function(a){
+    var target = new Date(a.y, a.m, a.d);
+    var diff = Math.round((target - today)/86400000);
+    var daysHtml, unit = '天';
+    if(diff > 0){ daysHtml = diff; }
+    else if(diff === 0){ daysHtml = '今'; unit = '天 · 就是今天'; }
+    else { daysHtml = Math.abs(diff); unit = '天前 · 已到达'; }
+    var adv = '';
+    if(a.advice && a.advice.length){
+      adv = '<div class="advice"><div class="lab">小乖的建议</div><ul>' +
+        a.advice.map(function(x){ return '<li>'+x+'</li>'; }).join('') + '</ul></div>';
+    }
+    var card = document.createElement('div');
+    card.className = 'anni-card';
+    card.innerHTML =
+      '<div class="postmark"><span class="d">'+daysHtml+'</span><span class="u">'+unit+'</span></div>' +
+      '<div class="anni-info"><div class="t">'+a.title+'</div>' +
+      '<div class="s">'+a.sub+'</div><div class="date">'+a.date+'</div></div>' + adv;
+    list.appendChild(card);
+  });
+})();
+
+/* ── 总览封面轮播（约 5 秒/张，1 秒交叉淡化；reduced-motion 时不自动播） ── */
+(function(){
+  var slides = document.querySelectorAll('#heroPh .slide');
+  var dots = document.querySelectorAll('#heroDots i');
+  if(slides.length < 2) return;
+  var cur = 0, timer = null;
+  function go(n){
+    slides[cur].classList.remove('on'); if(dots[cur]) dots[cur].classList.remove('on');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('on'); if(dots[cur]) dots[cur].classList.add('on');
+  }
+  function play(){ if(timer) clearInterval(timer); timer = setInterval(function(){ go(cur+1); }, 5000); }
+  dots.forEach(function(d, i){
+    d.addEventListener('click', function(){ go(i); play(); });
+  });
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) play();
+})();
+
+/* ── 故事站章「盖下」动效（滚动进入时逐站错开；与档案定稿同款节奏） ── */
+(function(){
+  var sts = document.querySelectorAll('.station');
+  if(!sts.length) return;
+  document.body.classList.add('anim');
+  sts.forEach(function(s, i){ s.style.setProperty('--sd', Math.min(i * 0.07, 0.35) + 's'); });
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced || !('IntersectionObserver' in window)){
+    sts.forEach(function(s){ s.classList.add('stamped'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('stamped'); io.unobserve(e.target); }
+    });
+  }, {threshold: .3});
+  sts.forEach(function(s){ io.observe(s); });
+})();
+</script>
+</body>
+</html>
