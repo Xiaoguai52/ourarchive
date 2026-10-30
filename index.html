@@ -96,41 +96,6 @@ section.page.on{display:block}
 .doudou .t1{font-weight:700;font-size:15px}
 .doudou .t2{font-size:12.5px;color:var(--ink-soft)}
 .doudou .go{margin-left:auto;color:var(--ticket);font-size:13px;white-space:nowrap}
-/* 票根收藏册 */
-.stubs{margin:40px auto 0}
-.stubs-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:15px}
-.stubs-head h2{font-size:21px;letter-spacing:.06em}
-.stubs-head .en{font-size:10px;letter-spacing:.3em;color:var(--ink-faint)}
-.stubcard{border-radius:10px;box-shadow:0 10px 24px rgba(35,50,70,.16);display:flex;overflow:hidden;position:relative;margin-bottom:8px}
-.stub-note{font-family:var(--hw);font-size:14.5px;color:var(--ink-soft);text-align:right;padding:0 6px 16px}
-/* 大麦演唱会票（真实票面照片 · 贴进手账） */
-.stub-photo{background:#fff;border-radius:6px;padding:11px 11px 13px;box-shadow:0 12px 28px rgba(35,50,70,.20);transform:rotate(-1.2deg);position:relative;margin-bottom:8px}
-.stub-photo img{display:block;width:100%;height:auto;border-radius:2px}
-.stub-photo .tape{position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(-2.5deg);width:118px;height:27px;background:repeating-linear-gradient(45deg,rgba(201,150,42,.48) 0 7px,rgba(201,150,42,.40) 7px 14px);border-left:1.5px dashed rgba(255,255,255,.65);border-right:1.5px dashed rgba(255,255,255,.65);box-shadow:0 2px 5px rgba(35,50,70,.14);z-index:2}
-/* 登机牌存根 */
-.bp{background:#fff;color:var(--ink);transform:rotate(.4deg)}
-.bp-main{flex:1;min-width:0;padding:15px 16px 14px;position:relative}
-.bp-brand{display:flex;align-items:baseline;gap:9px;color:var(--ticket)}
-.bp-brand .cn{font-size:16.5px;font-weight:800;letter-spacing:.1em}
-.bp-brand .en2{font-size:9.5px;letter-spacing:.22em;color:var(--ink-faint)}
-.bp-tag{position:absolute;right:12px;top:11px;border:1.8px solid var(--sage);color:var(--sage);border-radius:5px;padding:1px 8px;font-size:11.5px;font-weight:800;letter-spacing:.16em;transform:rotate(-6deg);background:rgba(255,255,255,.6)}
-.bp-route{display:flex;align-items:center;gap:10px;margin:9px 0 4px;font-size:16.5px;font-weight:800;letter-spacing:.03em;flex-wrap:wrap}
-.bp-route .arr{color:var(--ticket);font-weight:400}
-.bp-route .fl{font-family:var(--mono);font-size:13px;color:#fff;background:var(--ticket);border-radius:4px;padding:1px 8px;letter-spacing:.08em}
-.bp-meta{display:flex;flex-wrap:wrap;gap:5px 20px;font-size:12px;color:var(--ink-faint);letter-spacing:.05em;margin-top:7px}
-.bp-meta b{display:block;font-size:14.5px;color:var(--ink);margin-top:0;letter-spacing:.03em}
-.bp-sub{flex:none;width:74px;border-left:2px dashed #c3ced7;padding:13px 9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-family:var(--mono);color:var(--ticket);text-align:center}
-.bp-sub .f{font-size:14px;font-weight:700}
-.bp-sub .s{font-size:17px;font-weight:700}
-.bp-sub .t{font-size:11px;color:var(--ink-faint)}
-/* 空票根 */
-.stub-empty{border:1.8px dashed #b9c6d1;border-radius:10px;background:rgba(255,255,255,.45);padding:15px 18px 13px;text-align:center;color:var(--ink-faint)}
-.stub-empty .t{font-size:15px;font-weight:700;letter-spacing:.14em;color:var(--ink-soft)}
-.stub-empty .s{font-size:12.5px;margin-top:2px;letter-spacing:.05em}
-@media (max-width:560px){
-  .bp-route{font-size:15px}
-  .bp-sub{width:64px}
-}
 /* 相册架 */
 .shelf-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
 .shelf-head h2{font-size:21px;letter-spacing:.06em}
@@ -299,37 +264,6 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
     <div class="hero-sub">
       <div class="ost">ORIGINAL SOUNDTRACK · 武汉 → 南宁</div>
       <div class="hit">主打 · <b>五月天</b>（张大宝）× <b>林俊杰</b>（赖大宝）</div>
-    </div>
-  </div>
-
-  <div class="stubs">
-    <div class="stubs-head"><h2>票根收藏册</h2><span class="en">TICKET STUBS</span></div>
-
-    <div class="stub-photo">
-      <span class="tape"></span>
-      <img src="assets/ticket-jj20.jpg" alt="大麦票面照片：林俊杰 JJ20 南宁站">
-    </div>
-    <div class="stub-note">原票已遗失 · 按票面复刻纪念</div>
-
-    <div class="stubcard bp">
-      <div class="bp-main">
-        <div class="bp-brand"><span class="cn">中国南方航空</span><span class="en2">CHINA SOUTHERN</span></div>
-        <span class="bp-tag">待启程</span>
-        <div class="bp-route"><span>上海浦东 T2</span><span class="arr">→</span><span>南宁吴圩 T2</span><span class="fl">CZ5668</span></div>
-        <div class="bp-meta">
-          <div>日期<b>2026-11-01</b></div>
-          <div>时间<b>18:15 → 21:25</b></div>
-          <div>座位<b>62K · 靠窗</b></div>
-          <div>登机<b>17:35</b></div>
-          <div>舱位<b>经济舱 · 托运行李 20kg</b></div>
-        </div>
-      </div>
-      <div class="bp-sub"><span class="f">CZ5668</span><span class="s">62K</span><span class="t">登机 17:35</span></div>
-    </div>
-
-    <div class="stub-empty">
-      <div class="t">下一张票根 · 待收藏</div>
-      <div class="s">电影票、高铁票、下一场演唱会……</div>
     </div>
   </div>
 
