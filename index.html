@@ -68,79 +68,50 @@ section.page.on{display:block}
 .hero-sub .ost{font-size:11px;letter-spacing:.3em;color:var(--ink-faint)}
 .hero-sub .hit{margin-top:6px;font-size:15px}
 .hero-sub .hit b{color:var(--stamp)}
-/* 本车原声带 · 磁带随身听（一盘可翻面的磁带 + 实体键 + 歌词本 + Apple 播放器） */
-.ost-card{max-width:520px;margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.20);overflow:hidden}
-.ost-inner{padding:15px 18px 13px}
-.ost-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.ost-title{font-size:15px;font-weight:800;letter-spacing:.1em}
-.ost-title small{display:block;font-size:9px;letter-spacing:.28em;color:var(--ink-faint);font-weight:400;margin-top:1px}
-.ost-chip{flex:none;width:42px;height:42px;border:2px solid var(--stamp);border-radius:50%;color:var(--stamp);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11.5px;letter-spacing:.1em;transform:rotate(-9deg);background:rgba(255,255,255,.6);position:relative}
-.ost-chip::after{content:"";position:absolute;inset:3px;border:1px solid var(--stamp);border-radius:50%;opacity:.65}
-/* 磁带本体（3D 翻面；变换只作用于磁带自身，绝不套在播放器的祖先上） */
-.cass-scene{perspective:1100px}
-.cassette{position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.25,.7,.3,1)}
-.cassette.flipped{transform:rotateY(180deg)}
-.cass-face{--side:var(--ticket);position:relative;border-radius:12px;background:linear-gradient(160deg,#2e3947,#232c37 60%,#202833);padding:9px 9px 7px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -2px 5px rgba(0,0,0,.45);backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.cass-face.back{--side:var(--stamp);position:absolute;inset:0;transform:rotateY(180deg)}
-.cass-label{position:relative;border-radius:8px;background-color:#f7f4ec;background-image:radial-gradient(rgba(42,52,64,.10) 1px,transparent 1.1px);background-size:9px 9px;padding:10px 12px 0;overflow:hidden}
-.cass-top{display:flex;justify-content:space-between;align-items:center;font-size:8.5px;letter-spacing:.24em;color:var(--ink-faint)}
-.cass-top .no{font-family:var(--mono);letter-spacing:.05em}
-.cass-title{font-family:var(--hw);text-align:center;font-size:21px;line-height:1.3;color:var(--side);margin:3px 0 7px}
-.cass-window{position:relative;border-radius:9px;background:linear-gradient(#1d232b,#262d37);box-shadow:inset 0 2px 8px rgba(0,0,0,.75),inset 0 -1px 0 rgba(255,255,255,.08);padding:5px 8px}
-.cass-window svg{display:block;width:100%;height:auto}
-.cass-now{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:6px 1px 7px}
-.cass-nowtxt{font-family:var(--hw);font-size:14.5px;color:#3d4753;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cass-sideword{font-family:var(--mono);font-weight:700;font-size:12px;color:var(--side);letter-spacing:.14em;flex:none}
-.cass-stripe{margin:0 -12px;background:var(--side);color:#fff;font-size:9.5px;letter-spacing:.22em;padding:4px 12px;display:flex;justify-content:space-between}
-.cass-bottom{display:flex;justify-content:center;gap:34px;padding-top:6px}
-.cass-bottom i{display:block;width:44px;height:9px;border-radius:3px;background:#171d25;box-shadow:inset 0 1px 3px rgba(0,0,0,.8)}
-.screw{position:absolute;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#e8edf1,#9aa7b1 70%,#7e8b96);box-shadow:0 1px 1px rgba(0,0,0,.4);z-index:2}
-.screw::after{content:"";position:absolute;left:1px;right:1px;top:50%;height:1.4px;margin-top:-.7px;background:rgba(42,52,64,.65);transform:rotate(38deg)}
-.screw.tl{top:5px;left:5px}.screw.tr{top:5px;right:5px}.screw.bl{bottom:5px;left:5px}.screw.br{bottom:5px;right:5px}
-.reel{transform-box:view-box;animation:reelSpin 3.4s linear infinite;animation-play-state:paused}
-.reel.r{animation-duration:2.5s}
-.face-b .reel.l{animation-duration:2.5s}
-.face-b .reel.r{animation-duration:3.4s}
-.ost-card.playing .reel{animation-play-state:running}
-@keyframes reelSpin{to{transform:rotate(360deg)}}
-/* 随身听实体键 */
-.cass-keys{display:flex;gap:9px;margin-top:12px}
-.wkey{flex:1;display:flex;flex-direction:column;align-items:center;padding:7px 4px 6px;background:#fff;border:1.6px solid var(--line);border-radius:11px;box-shadow:0 3px 0 #cfd8df;font:inherit;font-size:15px;line-height:1.25;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.wkey small{font-size:10px;color:var(--ink-soft);letter-spacing:.18em}
-.wkey:active{transform:translateY(2px);box-shadow:0 1px 0 #cfd8df}
-.wkey.flip{flex:1.35;border-color:var(--sage);color:#4c6b47;font-weight:700}
-.wkey.flip .flip-side{font-size:10px;color:var(--ink-soft);font-weight:400;letter-spacing:.14em}
-.ost-hint{margin:10px 2px 0;text-align:center;font-size:11px;color:var(--ink-faint);letter-spacing:.04em}
-/* Apple 播放器：普通文档流，祖先无 sticky、无遮挡层（点按红线） */
-#amPlayer{width:100%;height:150px;border:0;border-radius:10px;background:var(--paper-2);display:block;pointer-events:auto;margin-top:10px}
-/* 歌词本 */
-.lyric{margin-top:15px;border-top:1px dashed var(--line);padding-top:10px}
-.lyric-head{display:flex;align-items:baseline;gap:9px;margin-bottom:4px}
-.lyric-head .bk{font-family:var(--hw);font-size:16.5px;color:#3d4753}
-.lyric-head .bs{font-size:11px;letter-spacing:.18em;color:var(--ink-faint);font-weight:700}
-.lyric-head .bs b{color:var(--ticket)}
-.lyric[data-side="B"] .bs b{color:var(--stamp)}
-.track{display:flex;align-items:center;gap:10px;padding:8px 9px;border-radius:8px;cursor:pointer;border-bottom:1px dashed var(--line);-webkit-tap-highlight-color:transparent}
-.track:last-of-type{border-bottom:none}
-.track:hover{background:var(--paper-2)}
-.track.on{background:rgba(36,86,166,.07)}
-.tracks-b .track.on{background:rgba(182,58,46,.07)}
-.t-no{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ticket);width:23px;flex:none}
-.tracks-b .t-no{color:var(--stamp)}
-.t-name{font-weight:600;font-size:14.5px;white-space:nowrap}
-.t-artist{font-size:12px;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.t-now{display:none;align-items:center;gap:6px;margin-left:auto;font-size:11px;color:var(--sage);font-weight:700;letter-spacing:.08em;flex:none}
-.track.on .t-now{display:flex}
-.eq{display:inline-flex;gap:2px;align-items:flex-end;height:10px}
-.eq i{width:3px;background:var(--sage);border-radius:1px;animation:eqB 0.9s ease-in-out infinite}
-.eq i:nth-child(1){height:6px}
-.eq i:nth-child(2){height:10px;animation-delay:.22s}
-.eq i:nth-child(3){height:5px;animation-delay:.45s}
-@keyframes eqB{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
-@media (prefers-reduced-motion: reduce){.eq i{animation:none}.reel{animation:none}.cassette{transition:none}}
-.t-link{margin-left:auto;color:var(--ink-faint);text-decoration:none;font-size:13px;line-height:1;padding:3px 5px;flex:none;border-radius:5px}
-.t-now + .t-link{margin-left:0}
-.t-link:hover{color:var(--ticket);background:rgba(36,86,166,.08)}
+/* 拍立得冲印室（选图 / 换字 / 摆一摆 / 滤镜 / 冲印） */
+.lab-card{max-width:520px;margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.20);overflow:hidden}
+.lab-inner{padding:15px 18px 14px}
+.lab-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px}
+.lab-title{font-size:15px;font-weight:800;letter-spacing:.1em}
+.lab-title small{display:block;font-size:9px;letter-spacing:.28em;color:var(--ink-faint);font-weight:400;margin-top:1px}
+.lab-chip{flex:none;width:42px;height:42px;border:2px solid var(--mustard);border-radius:50%;color:#a87c1d;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;transform:rotate(-9deg);background:rgba(255,255,255,.6);position:relative}
+.lab-chip::after{content:"";position:absolute;inset:3px;border:1px solid var(--mustard);border-radius:50%;opacity:.6}
+.lab-stage{display:flex;justify-content:center;padding:20px 4px 8px}
+.lab-polaroid{--rot:-1.2deg;background:#fff;padding:11px 11px 0;border-radius:4px;box-shadow:0 12px 30px rgba(35,50,70,.25);position:relative;width:min(330px,88%);transform:rotate(var(--rot));transition:transform .45s cubic-bezier(.25,.7,.3,1)}
+.lab-polaroid .ph{overflow:hidden;border-radius:2px;background:var(--paper-2)}
+.lab-polaroid .ph img{width:100%;height:auto}
+.lab-polaroid .tape{top:-11px}
+.lab-bottom{position:relative;min-height:64px;display:flex;align-items:center;justify-content:center;padding:8px 34px 12px}
+.lab-cap{font-family:var(--hw);font-size:17.5px;color:#3d4753;text-align:center;line-height:1.4;word-break:break-all}
+.lab-stamp{position:absolute;right:2px;bottom:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:#b57f1f;white-space:nowrap}
+.lab-stamp.none{color:var(--ink-faint)}
+.lab-strip{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.lab-strip::-webkit-scrollbar{display:none}
+.lab-thumb{flex:none;width:52px;height:52px;border-radius:6px;overflow:hidden;border:2px solid transparent;padding:0;background:var(--paper-2);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lab-thumb img{width:100%;height:100%;object-fit:cover}
+.lab-thumb.on{border-color:var(--stamp);box-shadow:0 3px 10px rgba(182,58,46,.25)}
+.lab-tools{margin-top:10px;border-top:1px dashed var(--line);padding-top:12px}
+.lab-field{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.14em;color:var(--ink-soft);font-weight:700}
+.lab-field input{flex:1;font:inherit;font-size:14.5px;letter-spacing:0;font-weight:400;color:var(--ink);border:1.4px solid var(--line);border-radius:9px;padding:7px 10px;background:#fff;min-width:0}
+.lab-field input:focus{outline:none;border-color:var(--ticket)}
+.lab-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.lab-btn{flex:1;font:inherit;font-size:13.5px;font-weight:700;letter-spacing:.1em;padding:9px 6px;background:#fff;border:1.6px solid var(--line);border-radius:11px;box-shadow:0 3px 0 #cfd8df;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent;white-space:nowrap}
+.lab-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #cfd8df}
+.lab-btn.print{border-color:var(--stamp);color:var(--stamp)}
+.lab-seg{flex:1.7;display:flex;border:1.6px solid var(--line);border-radius:11px;overflow:hidden;box-shadow:0 3px 0 #cfd8df}
+.lab-seg button{flex:1;font:inherit;font-size:13px;font-weight:600;padding:9px 2px;background:#fff;border:0;color:var(--ink-soft);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lab-seg button + button{border-left:1px solid var(--line)}
+.lab-seg button.on{background:var(--ticket);color:#fff}
+.lab-note{margin-top:10px;text-align:center;font-size:11px;color:var(--ink-faint);letter-spacing:.04em}
+.lab-modal{position:fixed;inset:0;z-index:200;background:rgba(24,32,42,.72);display:flex;align-items:center;justify-content:center;padding:22px}
+.lab-modal[hidden]{display:none}
+.lab-modal-box{background:#fff;border-radius:14px;padding:16px;max-width:400px;width:100%;box-shadow:0 22px 50px rgba(0,0,0,.35);text-align:center;max-height:92vh;overflow:auto}
+.lab-modal-box img{max-width:100%;max-height:62vh;width:auto;margin:0 auto;box-shadow:0 8px 22px rgba(35,50,70,.25)}
+.lab-modal-btns{display:flex;gap:9px;margin-top:14px}
+.lab-modal-btns a,.lab-modal-btns button{flex:1;font:inherit;font-size:14px;font-weight:700;letter-spacing:.08em;padding:10px 6px;border-radius:11px;cursor:pointer;text-decoration:none}
+.lab-modal-btns a{background:var(--stamp);color:#fff;border:1.6px solid var(--stamp);display:flex;align-items:center;justify-content:center}
+.lab-modal-btns button{background:#fff;color:var(--ink);border:1.6px solid var(--line)}
+@media (prefers-reduced-motion: reduce){.lab-polaroid{transition:none}}
 /* 车票 */
 .ticket{margin:38px auto 0;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(35,50,70,.22);overflow:hidden;position:relative}
 .ticket-top{padding:20px 22px 14px}
@@ -340,120 +311,47 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
     </div>
   </div>
 
-  <div class="ost-card playing" id="ostCard">
-    <div class="ost-inner">
-      <div class="ost-head">
-        <div class="ost-title">本车原声带<small>ORIGINAL SOUNDTRACK · 五月天 × 林俊杰</small></div>
-        <span class="ost-chip">OST</span>
+  <div class="lab-card" id="labCard">
+    <div class="lab-inner">
+      <div class="lab-head">
+        <div class="lab-title">拍立得冲印室<small>POLAROID LAB · 选一张，冲一张</small></div>
+        <span class="lab-chip">印</span>
       </div>
-      <div class="cass-scene">
-        <div class="cassette" id="cassette">
-          <div class="cass-face face-a">
-            <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-            <div class="cass-label">
-              <div class="cass-top"><span>OUR ARCHIVE · CASSETTE</span><span class="no">No.20201211</span></div>
-              <div class="cass-title">本车原声带 · 武汉 → 南宁</div>
-              <div class="cass-window">
-                <svg viewBox="0 0 320 92" aria-hidden="true">
-                  <polygon points="84,14 236,23 236,69 84,78" fill="#4e3520"/>
-                  <polygon points="58,66 110,66 118,83 50,83" fill="#4e3520"/>
-                  <polygon points="214,64 258,64 266,83 206,83" fill="#4e3520"/>
-                  <rect x="14" y="82" width="292" height="5" rx="2" fill="#33220f"/>
-                  <circle cx="84" cy="46" r="31" fill="#5a3d24" stroke="#38250f" stroke-width="1.5"/>
-                  <circle cx="236" cy="46" r="22" fill="#5a3d24" stroke="#38250f" stroke-width="1.5"/>
-                  <g class="reel l" style="transform-origin:84px 46px">
-                    <circle cx="84" cy="46" r="15.5" fill="#f0ead9" stroke="#2a3440" stroke-width="2"/>
-                    <path d="M84,33 v26 M73,39.5 l22,13 M95,39.5 l-22,13" stroke="#2a3440" stroke-width="3.4" fill="none"/>
-                    <circle cx="84" cy="46" r="4" fill="#2a3440"/>
-                  </g>
-                  <g class="reel r" style="transform-origin:236px 46px">
-                    <circle cx="236" cy="46" r="15.5" fill="#f0ead9" stroke="#2a3440" stroke-width="2"/>
-                    <path d="M236,33 v26 M225,39.5 l22,13 M247,39.5 l-22,13" stroke="#2a3440" stroke-width="3.4" fill="none"/>
-                    <circle cx="236" cy="46" r="4" fill="#2a3440"/>
-                  </g>
-                </svg>
-              </div>
-              <div class="cass-now"><span class="cass-nowtxt">正在播 · A1 突然好想你 — 五月天</span><span class="cass-sideword">SIDE A</span></div>
-              <div class="cass-stripe"><span>SIDE A · MAYDAY</span><span>五月天</span></div>
-            </div>
-            <div class="cass-bottom"><i></i><i></i></div>
-          </div>
-          <div class="cass-face face-b back" aria-hidden="true">
-            <span class="screw tl"></span><span class="screw tr"></span><span class="screw bl"></span><span class="screw br"></span>
-            <div class="cass-label">
-              <div class="cass-top"><span>OUR ARCHIVE · CASSETTE</span><span class="no">No.20201211</span></div>
-              <div class="cass-title">本车原声带 · 武汉 → 南宁</div>
-              <div class="cass-window">
-                <svg viewBox="0 0 320 92" aria-hidden="true">
-                  <polygon points="84,23 236,14 236,78 84,69" fill="#4e3520"/>
-                  <polygon points="62,64 106,64 114,83 54,83" fill="#4e3520"/>
-                  <polygon points="210,66 262,66 270,83 202,83" fill="#4e3520"/>
-                  <rect x="14" y="82" width="292" height="5" rx="2" fill="#33220f"/>
-                  <circle cx="84" cy="46" r="22" fill="#5a3d24" stroke="#38250f" stroke-width="1.5"/>
-                  <circle cx="236" cy="46" r="31" fill="#5a3d24" stroke="#38250f" stroke-width="1.5"/>
-                  <g class="reel l" style="transform-origin:84px 46px">
-                    <circle cx="84" cy="46" r="15.5" fill="#f0ead9" stroke="#2a3440" stroke-width="2"/>
-                    <path d="M84,33 v26 M73,39.5 l22,13 M95,39.5 l-22,13" stroke="#2a3440" stroke-width="3.4" fill="none"/>
-                    <circle cx="84" cy="46" r="4" fill="#2a3440"/>
-                  </g>
-                  <g class="reel r" style="transform-origin:236px 46px">
-                    <circle cx="236" cy="46" r="15.5" fill="#f0ead9" stroke="#2a3440" stroke-width="2"/>
-                    <path d="M236,33 v26 M225,39.5 l22,13 M247,39.5 l-22,13" stroke="#2a3440" stroke-width="3.4" fill="none"/>
-                    <circle cx="236" cy="46" r="4" fill="#2a3440"/>
-                  </g>
-                </svg>
-              </div>
-              <div class="cass-now"><span class="cass-nowtxt">正在播 · A1 突然好想你 — 五月天</span><span class="cass-sideword">SIDE B</span></div>
-              <div class="cass-stripe"><span>SIDE B · JJ LIN</span><span>林俊杰</span></div>
-            </div>
-            <div class="cass-bottom"><i></i><i></i></div>
+      <div class="lab-stage">
+        <div class="lab-polaroid" id="labPolaroid">
+          <span class="tape" id="labTape"></span>
+          <div class="ph"><img id="labImg" src="assets/laixinwen-confetti-2022.jpg" alt="彩带里的赖大宝"></div>
+          <div class="lab-bottom">
+            <div class="lab-cap" id="labCap">彩带里的赖大宝</div>
+            <span class="lab-stamp" id="labStamp">'22 07 06</span>
           </div>
         </div>
       </div>
-      <div class="cass-keys">
-        <button type="button" class="wkey" id="ostPrev" aria-label="上一首"><span>◂◂</span><small>上一首</small></button>
-        <button type="button" class="wkey flip" id="ostFlip" aria-label="翻面"><span>翻 面</span><span class="flip-side" id="flipHint">看 B 面 · 林俊杰</span></button>
-        <button type="button" class="wkey" id="ostNext" aria-label="下一首"><span>▸▸</span><small>下一首</small></button>
-      </div>
-      <div class="ost-hint">点下方播放器开始播放 · Apple Music 订阅可听全曲，未订阅为试听</div>
-      <iframe id="amPlayer" title="Apple Music 播放器" allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;overflow:hidden;background:transparent" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/cn/song/1081381266"></iframe>
-      <div class="lyric" id="lyric" data-side="A">
-        <div class="lyric-head"><span class="bk">歌词本</span><span class="bs" id="lyricHead"><b>SIDE A</b> · 五月天（张大宝）</span></div>
-        <div class="tracks-a" id="tracksA">
-          <div class="track on" data-no="A1" data-amid="1081381266" role="button" tabindex="0" aria-label="播放 突然好想你">
-            <span class="t-no">A1</span><span class="t-name">突然好想你</span><span class="t-artist">五月天</span>
-            <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
-            <a class="t-link" href="https://music.apple.com/cn/song/1081381266" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《突然好想你》">↗</a>
+      <div class="lab-strip" id="labStrip" aria-label="选一张照片"></div>
+      <div class="lab-tools">
+        <label class="lab-field">图注 · 换字<input id="labCapInput" type="text" maxlength="24" value="彩带里的赖大宝" autocomplete="off"></label>
+        <div class="lab-btns">
+          <button type="button" class="lab-btn" id="labShuffle">摆一摆</button>
+          <div class="lab-seg" role="group" aria-label="滤镜">
+            <button type="button" data-f="none" class="on" aria-pressed="true">原片</button>
+            <button type="button" data-f="warm" aria-pressed="false">暖阳</button>
+            <button type="button" data-f="cool" aria-pressed="false">冷蓝</button>
           </div>
-          <div class="track" data-no="A2" data-amid="150097714" role="button" tabindex="0" aria-label="播放 温柔">
-            <span class="t-no">A2</span><span class="t-name">温柔</span><span class="t-artist">五月天</span>
-            <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
-            <a class="t-link" href="https://music.apple.com/cn/song/150097714" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《温柔》">↗</a>
-          </div>
-          <div class="track" data-no="A3" data-amid="1081309216" role="button" tabindex="0" aria-label="播放 干杯">
-            <span class="t-no">A3</span><span class="t-name">干杯</span><span class="t-artist">五月天</span>
-            <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
-            <a class="t-link" href="https://music.apple.com/cn/song/1081309216" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《干杯》">↗</a>
-          </div>
+          <button type="button" class="lab-btn print" id="labPrint">冲 印</button>
         </div>
-        <div class="tracks-b" id="tracksB" style="display:none">
-          <div class="track" data-no="B1" data-amid="1694849138" role="button" tabindex="0" aria-label="播放 修炼爱情">
-            <span class="t-no">B1</span><span class="t-name">修炼爱情</span><span class="t-artist">林俊杰</span>
-            <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
-            <a class="t-link" href="https://music.apple.com/cn/song/1694849138" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《修炼爱情》">↗</a>
-          </div>
-          <div class="track" data-no="B2" data-amid="1871400637" role="button" tabindex="0" aria-label="播放 不为谁而作的歌">
-            <span class="t-no">B2</span><span class="t-name">不为谁而作的歌</span><span class="t-artist">林俊杰</span>
-            <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
-            <a class="t-link" href="https://music.apple.com/cn/song/1871400637" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《不为谁而作的歌》">↗</a>
-          </div>
-          <div class="track" data-no="B3" data-amid="1071752115" role="button" tabindex="0" aria-label="播放 小酒窝">
-            <span class="t-no">B3</span><span class="t-name">小酒窝</span><span class="t-artist">林俊杰＆蔡卓妍</span>
-            <span class="t-now"><span class="eq"><i></i><i></i><i></i></span>播放中</span>
-            <a class="t-link" href="https://music.apple.com/cn/song/1071752115" target="_blank" rel="noopener" aria-label="在 Apple Music 打开《小酒窝》">↗</a>
-          </div>
-        </div>
+        <p class="lab-note">冲印出一张成品拍立得 PNG；在微信里打开时，下载没反应就长按图片保存。</p>
       </div>
+    </div>
+  </div>
+
+  <div class="lab-modal" id="labModal" hidden>
+    <div class="lab-modal-box">
+      <img id="labOut" alt="冲印好的拍立得">
+      <div class="lab-modal-btns">
+        <a id="labDownload" href="#" download="我们的拍立得.png">下载 PNG</a>
+        <button type="button" id="labClose">关闭</button>
+      </div>
+      <p class="lab-note">长按图片也可以保存到相册。</p>
     </div>
   </div>
 
@@ -927,71 +825,156 @@ var ANNIS = [
   sts.forEach(function(s){ io.observe(s); });
 })();
 
-/* ── 原声带 · 磁带随身听（翻面 / 选歌 / 上一首·下一首 / 带轮状态） ── */
+/* ── 拍立得冲印室（选图 / 换字 / 摆一摆 / 滤镜 / 冲印） ── */
 (function(){
-  var card = document.getElementById('ostCard');
+  var card = document.getElementById('labCard');
   if(!card) return;
-  var frame = document.getElementById('amPlayer');
-  var cassette = document.getElementById('cassette');
-  var flipBtn = document.getElementById('ostFlip');
-  var flipHint = document.getElementById('flipHint');
-  var prevBtn = document.getElementById('ostPrev');
-  var nextBtn = document.getElementById('ostNext');
-  var lyric = document.getElementById('lyric');
-  var lyricHead = document.getElementById('lyricHead');
-  var groups = { A: document.getElementById('tracksA'), B: document.getElementById('tracksB') };
-  var nowEls = card.querySelectorAll('.cass-nowtxt');
-  var rows = Array.prototype.slice.call(card.querySelectorAll('.track'));
-  var TRACKS = [
-    {no:'A1', side:'A', name:'突然好想你', artist:'五月天', amid:'1081381266'},
-    {no:'A2', side:'A', name:'温柔', artist:'五月天', amid:'150097714'},
-    {no:'A3', side:'A', name:'干杯', artist:'五月天', amid:'1081309216'},
-    {no:'B1', side:'B', name:'修炼爱情', artist:'林俊杰', amid:'1694849138'},
-    {no:'B2', side:'B', name:'不为谁而作的歌', artist:'林俊杰', amid:'1871400637'},
-    {no:'B3', side:'B', name:'小酒窝', artist:'林俊杰＆蔡卓妍', amid:'1071752115'}
+  var PHOTOS = [
+    {src:'assets/laixinwen-confetti-2022.jpg', cap:'彩带里的赖大宝', stamp:"'22 07 06"},
+    {src:'assets/laixinwen-glasses.jpg', cap:'戴眼镜的赖大宝', stamp:''},
+    {src:'assets/laixinwen-field.jpg', cap:'操场上的赖大宝', stamp:''},
+    {src:'assets/zhangshiyuan-outdoor.jpg', cap:'绿荫下的张大宝', stamp:''},
+    {src:'assets/zhangshiyuan-selfie.jpg', cap:'托下巴的张大宝', stamp:''},
+    {src:'assets/together-02-huaxia-night.jpg', cap:'华夏印务中心门口的夜晚', stamp:"'21 06 13"},
+    {src:'assets/together-01-grass.jpg', cap:'躺在草坪上', stamp:"'21 06 11"},
+    {src:'assets/together-03-night-close.jpg', cap:'贴贴的夜晚', stamp:"'21 06 24"},
+    {src:'assets/together-04-night-close2.jpg', cap:'同一个夜晚，再靠近一点', stamp:"'21 06 24"},
+    {src:'assets/together-05-night-lean.jpg', cap:'靠着头就不想起来', stamp:"'21 10 25"},
+    {src:'assets/together-06-birthday-cake.jpg', cap:'一周年这天的小蛋糕', stamp:"'21 12 11"},
+    {src:'assets/together-07-graduation.jpg', cap:'她按着他的头说，毕业啦', stamp:"'22 06 07"},
+    {src:'assets/together-08-graduation-polaroid.jpg', cap:'拍立得里的「毕业啦」', stamp:"'22 06 05"},
+    {src:'assets/together-09-concert.jpg', cap:'荧光棒的光里', stamp:"'23 06 25"},
+    {src:'assets/together-10-polaroids.jpg', cap:'桌上立着的两张拍立得', stamp:''},
+    {src:'assets/doudou-1.jpg', cap:'模范乘客 · 头像原图', stamp:''},
+    {src:'assets/doudou-2.jpg', cap:'柜子上的守门员', stamp:''},
+    {src:'assets/doudou-3.jpg', cap:'抬头杀 · 金瞳正脸', stamp:''},
+    {src:'assets/doudou-4.jpg', cap:'柜子上睡到没电', stamp:''},
+    {src:'assets/doudou-5.jpg', cap:'坐车也要发表意见', stamp:''},
+    {src:'assets/doudou-6.jpg', cap:'夜车里的小好奇', stamp:''}
   ];
-  var cur = 0;        /* 当前曲目（TRACKS 下标），初始 A1 */
-  var viewSide = 'A'; /* 当前朝向的一面 */
-  function renderSide(){
-    cassette.classList.toggle('flipped', viewSide === 'B');
-    groups.A.style.display = viewSide === 'A' ? '' : 'none';
-    groups.B.style.display = viewSide === 'B' ? '' : 'none';
-    lyric.dataset.side = viewSide;
-    lyricHead.innerHTML = viewSide === 'A' ? '<b>SIDE A</b> · 五月天（张大宝）' : '<b>SIDE B</b> · 林俊杰（赖大宝）';
-    flipHint.textContent = viewSide === 'A' ? '看 B 面 · 林俊杰' : '看 A 面 · 五月天';
-  }
+  var FILTERS = {
+    none:'none',
+    warm:'sepia(.38) saturate(1.25) hue-rotate(-8deg) brightness(1.05)',
+    cool:'saturate(.9) hue-rotate(10deg) brightness(1.04) contrast(1.03)'
+  };
+  var TAPE_COLORS = ['', 'sky', 'rose', 'mustard', 'red', 'blue'];
+  var TAPE_RGBA = {'':'rgba(125,155,118,.45)', sky:'rgba(91,151,196,.45)', rose:'rgba(207,154,168,.5)', mustard:'rgba(201,150,42,.42)', red:'rgba(182,58,46,.38)', blue:'rgba(36,86,166,.40)'};
+  var cur = 0, filter = 'none', tapeColor = '', tapeLeft = 50, tapeRot = -2.5;
+  var img = document.getElementById('labImg');
+  var capEl = document.getElementById('labCap');
+  var stampEl = document.getElementById('labStamp');
+  var input = document.getElementById('labCapInput');
+  var polaroid = document.getElementById('labPolaroid');
+  var tape = document.getElementById('labTape');
+  var strip = document.getElementById('labStrip');
+  var thumbs = [];
+  PHOTOS.forEach(function(p, i){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'lab-thumb' + (i === 0 ? ' on' : '');
+    b.setAttribute('aria-label', '选照片：' + p.cap);
+    var t = document.createElement('img');
+    t.src = p.src; t.alt = ''; t.loading = 'lazy';
+    b.appendChild(t);
+    b.addEventListener('click', function(){ pick(i); });
+    strip.appendChild(b);
+    thumbs.push(b);
+  });
   function pick(i){
-    cur = ((i % TRACKS.length) + TRACKS.length) % TRACKS.length;
-    var t = TRACKS[cur];
-    rows.forEach(function(r){ r.classList.toggle('on', r.dataset.no === t.no); });
-    var label = '正在播 · ' + t.no + ' ' + t.name + ' — ' + t.artist;
-    nowEls.forEach(function(el){ el.textContent = label; });
-    if(frame.getAttribute('src') !== 'https://embed.music.apple.com/cn/song/' + t.amid){
-      frame.src = 'https://embed.music.apple.com/cn/song/' + t.amid;
-    }
-    card.classList.add('playing');
-    if(t.side !== viewSide){ viewSide = t.side; renderSide(); }
+    cur = i;
+    var p = PHOTOS[i];
+    img.src = p.src;
+    img.alt = p.cap;
+    input.value = p.cap;
+    capEl.textContent = p.cap;
+    if(p.stamp){ stampEl.textContent = p.stamp; stampEl.classList.remove('none'); }
+    else { stampEl.textContent = '日期待补'; stampEl.classList.add('none'); }
+    thumbs.forEach(function(b, j){ b.classList.toggle('on', j === i); });
+    strip.scrollLeft = Math.max(0, thumbs[i].offsetLeft - 60);
   }
-  rows.forEach(function(row){
-    function go(){
-      var idx = TRACKS.findIndex(function(t){ return t.no === row.dataset.no; });
-      if(idx > -1) pick(idx);
-    }
-    row.addEventListener('click', function(e){
-      if(e.target.closest('.t-link')) return;
-      go();
-    });
-    row.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); }
+  input.addEventListener('input', function(){ capEl.textContent = input.value; });
+  document.getElementById('labShuffle').addEventListener('click', function(){
+    var rot = (Math.random() * 6 - 3).toFixed(2);
+    polaroid.style.setProperty('--rot', rot + 'deg');
+    tapeLeft = 40 + Math.random() * 20;
+    tapeRot = (Math.random() * 14 - 7).toFixed(1);
+    tapeColor = TAPE_COLORS[Math.floor(Math.random() * TAPE_COLORS.length)];
+    tape.className = 'tape' + (tapeColor ? ' ' + tapeColor : '');
+    tape.style.left = tapeLeft + '%';
+    tape.style.transform = 'translateX(-50%) rotate(' + tapeRot + 'deg)';
+  });
+  var segBtns = card.querySelectorAll('.lab-seg button');
+  segBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      filter = b.dataset.f;
+      img.style.filter = filter === 'none' ? '' : FILTERS[filter];
+      segBtns.forEach(function(x){
+        var on = x === b;
+        x.classList.toggle('on', on);
+        x.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
     });
   });
-  flipBtn.addEventListener('click', function(){
-    viewSide = viewSide === 'A' ? 'B' : 'A';
-    renderSide();
+  var modal = document.getElementById('labModal');
+  var out = document.getElementById('labOut');
+  var dl = document.getElementById('labDownload');
+  var outUrl = null;
+  document.getElementById('labPrint').addEventListener('click', function(){
+    var p = PHOTOS[cur];
+    var im = new Image();
+    im.onload = function(){
+      var W = 900, pad = 38, photoW = W - pad * 2;
+      var photoH = Math.round(photoW * im.naturalHeight / im.naturalWidth);
+      var bottomH = 178;
+      var H = pad + photoH + bottomH + pad;
+      var c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      var x = c.getContext('2d');
+      x.fillStyle = '#ffffff'; x.fillRect(0, 0, W, H);
+      x.save();
+      if(filter !== 'none'){ try { x.filter = FILTERS[filter]; } catch(e){} }
+      x.drawImage(im, pad, pad, photoW, photoH);
+      x.restore();
+      x.save();
+      x.translate(W * tapeLeft / 100, pad - 4);
+      x.rotate(tapeRot * Math.PI / 180);
+      x.fillStyle = TAPE_RGBA[tapeColor];
+      x.fillRect(-115, -17, 230, 34);
+      x.restore();
+      var cap = input.value;
+      if(cap){
+        x.fillStyle = '#3d4753';
+        x.font = '46px "Hannotate SC","Kaiti SC","STKaiti","KaiTi","楷体",cursive';
+        x.textAlign = 'center'; x.textBaseline = 'middle';
+        x.fillText(cap, W / 2, pad + photoH + bottomH / 2 - 8, W - 200);
+      }
+      x.textAlign = 'right';
+      if(p.stamp){
+        x.fillStyle = '#b57f1f';
+        x.font = '600 27px "SF Mono","Roboto Mono",Consolas,"Courier New",monospace';
+        x.textBaseline = 'alphabetic';
+        x.fillText(p.stamp, W - pad - 6, H - pad - 16);
+      } else {
+        x.fillStyle = '#8b99a5';
+        x.font = '27px "Hannotate SC","Kaiti SC","STKaiti","KaiTi","楷体",cursive';
+        x.textBaseline = 'alphabetic';
+        x.fillText('日期待补', W - pad - 6, H - pad - 16);
+      }
+      if(c.toBlob){
+        c.toBlob(function(blob){
+          if(!blob) return;
+          if(outUrl) URL.revokeObjectURL(outUrl);
+          outUrl = URL.createObjectURL(blob);
+          out.src = outUrl;
+          dl.href = outUrl;
+          modal.hidden = false;
+        }, 'image/png');
+      }
+    };
+    im.src = p.src;
   });
-  prevBtn.addEventListener('click', function(){ pick(cur - 1); });
-  nextBtn.addEventListener('click', function(){ pick(cur + 1); });
-  renderSide();
+  document.getElementById('labClose').addEventListener('click', function(){ modal.hidden = true; });
+  modal.addEventListener('click', function(e){ if(e.target === modal) modal.hidden = true; });
 })();
 </script>
 </body>
