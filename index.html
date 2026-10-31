@@ -363,7 +363,7 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
     <div class="hero-sub">
       <div class="ost">ORIGINAL SOUNDTRACK · 武汉 → 南宁</div>
       <div class="hit">主打 · <b>五月天</b>（张大宝）× <b>林俊杰</b>（赖大宝）</div>
-      <div style="font-size:12.5px;color:var(--ink-faint);letter-spacing:.22em;margin-top:9px">23 本相册 · 335 张照片 · 20 首曲目</div>
+      <div style="font-size:12.5px;color:var(--ink-faint);letter-spacing:.22em;margin-top:9px">24 本相册 · 338 张照片 · 21 首曲目</div>
     </div>
   </div>
 
@@ -685,21 +685,21 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
     <div class="rep">
       <span class="rep-stamp" style="color:var(--ticket);border-color:var(--ticket)">已封存</span>
       <div class="yr">2023<small>第 3 年</small></div>
-      <div class="rows"><span>里程 <b>1096</b> 天</span><span>照片 <b>67</b> 张</span></div>
+      <div class="rows"><span>里程 <b>1096</b> 天</span><span>照片 <b>68</b> 张</span></div>
       <div class="ev">赖大宝毕业了 · 一起去听五月天 · JJ20 在南宁</div>
       <div class="stubline">存根 · 武汉 → 南宁</div>
     </div>
     <div class="rep">
       <span class="rep-stamp" style="color:var(--ticket);border-color:var(--ticket)">已封存</span>
       <div class="yr">2024<small>第 4 年</small></div>
-      <div class="rows"><span>里程 <b>1462</b> 天</span><span>照片 <b>53</b> 张</span></div>
+      <div class="rows"><span>里程 <b>1462</b> 天</span><span>照片 <b>54</b> 张</span></div>
       <div class="ev">北京之行 · 五月的海边</div>
       <div class="stubline">存根 · 武汉 → 南宁</div>
     </div>
     <div class="rep">
       <span class="rep-stamp" style="color:var(--ticket);border-color:var(--ticket)">已封存</span>
       <div class="yr">2025<small>第 5 年</small></div>
-      <div class="rows"><span>里程 <b>1827</b> 天</span><span>照片 <b>18</b> 张</span></div>
+      <div class="rows"><span>里程 <b>1827</b> 天</span><span>照片 <b>19</b> 张</span></div>
       <div class="ev">在南宁的日子</div>
       <div class="stubline">存根 · 武汉 → 南宁</div>
     </div>
@@ -1136,7 +1136,8 @@ var BOOKS = [
       {src:"assets/concert-2023-06-25-2.jpg", cap:"演唱会现场 · 补二"},
       {src:"assets/sweep-2023-06-26-together-01.jpg", cap:"演唱会现场夜拍：他脸颊有应援贴字、她举手背涂蓝字，两人均穿黑色T恤"},
       {src:"assets/sweep-2023-06-26-together-02.jpg", cap:"同场演唱会蓝色灯光下自拍：他脸颊有竖排应援贴字"},
-      {src:"assets/sweep-2023-06-26-together-03.jpg", cap:"体育场看台自拍：背景为球场与观众席，他右脸颊贴字可辨五月天及MAYDAY字样"}
+      {src:"assets/sweep-2023-06-26-together-03.jpg", cap:"体育场看台自拍：背景为球场与观众席，他右脸颊贴字可辨五月天及MAYDAY字样"},
+      {src:"assets/wuhan-tickets.jpg", cap:"当晚的两张票根：看台 B113 区 17 排 15、16 号，¥655"}
     ]},
   { name:"2023 · 寺庙与展览", tag:"TRACK 12", color:"mustard", period:"2023 年 10 月",
     cover:"assets/sweep-2023-10-04-her-02.jpg",
@@ -1226,7 +1227,8 @@ var BOOKS = [
       {src:"assets/sweep-2024-05-25-him-03.jpg", cap:"演唱会现场他侧面持荧光棒并举手机拍摄，粉色灯光人潮"},
       {src:"assets/sweep-2024-05-25-together-01.jpg", cap:"夜晚两人自拍合影，他卷发戴眼镜穿黑卫衣，她嘟嘴比剪刀手穿浅蓝上衣"},
       {src:"assets/sweep-2024-05-26-him-01.jpg", cap:"他穿黑外套在人民大会堂前手持小红旗留影"},
-      {src:"assets/sweep-2024-05-26-together-02.jpg", cap:"两人在天安门前贴脸自拍，两人均看镜头微笑"}
+      {src:"assets/sweep-2024-05-26-together-02.jpg", cap:"两人在天安门前贴脸自拍，两人均看镜头微笑"},
+      {src:"assets/memorial-beijing.jpg", cap:"纷玩岛纪念票：一层 142 区 7 排 12 座，¥655"}
     ]},
   { name:"2024 · 日常", tag:"TRACK 17", color:"rose", period:"2024 年",
     cover:"assets/sweep-2024-03-her-01.jpg",
@@ -1285,7 +1287,12 @@ var BOOKS = [
       {src:"assets/sweep-2025-08-him-03.jpg", cap:"夜晚站在有轨电车/轻轨旁，黑T恤印IN-N-OUT BURGER California字样，口罩拉到下巴"},
       {src:"assets/sweep-2025-08-him-06.jpg", cap:"户外自拍，戴鸭舌帽、白T恤印SCRAMBLE字样，身后高层住宅楼"}
     ]},
-{ name:"拍立得收藏", tag:"TRACK 20", color:"blue", period:"日期待补",
+  { name:"2025 · 贵阳五月天演唱会", tag:"TRACK 20", color:"red", period:"2025-09-13 · 贵阳",
+    cover:"assets/memorial-guiyang.jpg",
+    photos:[
+      {src:"assets/memorial-guiyang.jpg", cap:"纷玩岛纪念票：看台 E 区 33 排 66 座，¥655"}
+    ]},
+{ name:"拍立得收藏", tag:"TRACK 21", color:"blue", period:"日期待补",
     cover:"assets/together-10-polaroids.jpg",
     photos:[
       {src:"assets/together-10-polaroids.jpg", cap:"桌上立着的两张拍立得 · 日期待补"}
