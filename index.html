@@ -325,6 +325,30 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
   .brand{font-size:13px;margin-right:6px}
   .brand small{display:none}
 }
+/* ═══ 万圣节季节装饰层 2026-10-31（集中开关，与本体同款设计）═══
+   撤除：删除本段 CSS + 文末 HALLOWEEN-DECOR 脚本段 + 所有带 hwdec 类的元素，即整体恢复 */
+.hwdec{display:none}
+body.hw-on .hwdec{display:block}
+body.hw-on .hwdec-mini{display:inline-flex}
+.hwdec-stamp{position:absolute;width:94px;height:94px;color:#dd7a26;transform:rotate(-9deg);pointer-events:none;z-index:6}
+.hwdec-stamp .ring{position:absolute;inset:0;border:2.4px solid currentColor;border-radius:50%;background:rgba(255,251,243,.55)}
+.hwdec-stamp .ring::after{content:"";position:absolute;inset:4px;border:1px solid currentColor;border-radius:50%;opacity:.6}
+.hwdec-stamp svg{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:42px;height:34px}
+.hwdec-stamp .txt{position:absolute;left:2px;right:2px;bottom:12px;text-align:center;font-size:10.5px;font-weight:800;letter-spacing:.06em;line-height:1.35}
+.hwdec-cover{right:-12px;bottom:6px}
+.hwdec-lights{position:absolute;left:16px;right:16px;top:0;height:15px;pointer-events:none;z-index:3;background-image:radial-gradient(circle at 50% 78%,#ffe3b0 0 1.8px,rgba(244,166,60,.95) 3px,rgba(244,166,60,0) 6.5px),linear-gradient(rgba(146,102,52,.5),rgba(146,102,52,.5));background-size:27px 15px,100% 1.4px;background-position:0 0,0 1px;background-repeat:repeat-x,no-repeat}
+.hwdec.hwdec-mini{width:36px;height:36px;color:#dd7a26;transform:rotate(-9deg);margin-left:9px;vertical-align:-7px;position:relative;align-items:center;justify-content:center}
+.hwdec-mini .ring{position:absolute;inset:0;border:2px solid currentColor;border-radius:50%;background:rgba(255,251,243,.55)}
+.hwdec-mini .ring::after{content:"";position:absolute;inset:3px;border:1px solid currentColor;border-radius:50%;opacity:.6}
+.hwdec-mini svg{width:21px;height:17px;position:relative}
+@media (prefers-reduced-motion: no-preference){
+  body.hw-on .hwdec-stamp,body.hw-on .hwdec-mini{animation:stampIn .45s cubic-bezier(.2,1.55,.4,1) both}
+}
+/* 万圣节主题切换按钮（页眉，与装饰层同属一层） */
+.hwdec-toggle{flex:none;display:inline-flex;align-items:center;gap:5px;margin-left:10px;padding:5px 11px;border:1.6px solid #dd7a26;border-radius:999px;background:rgba(255,251,243,.85);color:#dd7a26;font-size:12px;font-weight:700;letter-spacing:.05em;cursor:pointer;font-family:inherit}
+.hwdec-toggle svg{width:15px;height:15px;flex:none}
+.hwdec-toggle.on{background:#dd7a26;color:#fff}
+@media (max-width:560px){ .hwdec-toggle{margin-left:4px;padding:4px 8px;font-size:11px} }
 </style>
 </head>
 <body>
@@ -339,6 +363,8 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
     <button class="tab" data-tab="story"><span class="no">03</span>故事</button>
     <button class="tab" data-tab="anni"><span class="no">04</span>纪念日</button>
     <button class="tab" data-tab="xiaoguai"><span class="no">05</span>小乖</button>
+    <!-- HALLOWEEN-DECOR：万圣节主题切换按钮 -->
+    <button class="hwdec-toggle" id="themeToggle" type="button" aria-pressed="true" title="切换经典 / 万圣节主题"><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M24 7c.6-2.2 2-3.4 4.2-3.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><ellipse cx="24" cy="23.5" rx="16.5" ry="13" fill="currentColor"/></svg><span>切回经典</span></button>
   </div>
 </header>
 
@@ -357,6 +383,8 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
         <img class="slide" src="assets/together-06-birthday-cake.jpg" alt="一周年这天的小蛋糕" loading="lazy">
       </div>
       <div class="hero-dots" id="heroDots"><i class="on"></i><i></i><i></i><i></i></div>
+      <!-- HALLOWEEN-DECOR：封面南瓜印章 -->
+      <div class="hwdec hwdec-stamp hwdec-cover" aria-hidden="true"><span class="ring"></span><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M24 7c.6-2.2 2-3.4 4.2-3.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="24" cy="23.5" rx="16.5" ry="13" fill="currentColor"/><path d="M13.5 13.5c-2 6-2 13 0 19M34.5 13.5c2 6 2 13 0 19" stroke="rgba(120,50,0,.28)" stroke-width="1.6" fill="none"/><path d="M16.5 20.5l3.6-4.4 1.4 5.4zM31.5 20.5l-3.6-4.4-1.4 5.4z" fill="#fff6e6"/><path d="M22.6 25h2.8l-1.4 3z" fill="#fff6e6"/><path d="M16 29.5l4 2.4 4-2.4 4 2.4 4-2.4-1.2 4h-13.6z" fill="#fff6e6"/></svg><span class="txt">万圣节快乐<br>10.31</span></div>
       <div class="cap">我们的档案 · 封面</div>
     </div>
     <h1 class="hero-title">我们的档案</h1>
@@ -368,6 +396,8 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
   </div>
 
   <div class="ticket">
+    <!-- HALLOWEEN-DECOR：票面顶部灯串 -->
+    <div class="hwdec hwdec-lights" aria-hidden="true"></div>
     <div class="ticket-top">
       <div class="ticket-head">
         <span class="tt">双人联程车票</span>
@@ -436,7 +466,8 @@ footer .hw{font-size:15px;color:var(--ink-soft)}
 
 <!-- ══════════ 故事 ══════════ -->
 <section class="page" id="page-story">
-  <div class="shelf-head"><h2>我们的故事</h2><span>武汉 → 南宁 · 一路的站</span></div>
+  <div class="shelf-head"><h2>我们的故事<span class="hwdec hwdec-mini" aria-hidden="true"><span class="ring"></span><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M24 7c.6-2.2 2-3.4 4.2-3.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="24" cy="23.5" rx="16.5" ry="13" fill="currentColor"/><path d="M16.5 20.5l3.6-4.4 1.4 5.4zM31.5 20.5l-3.6-4.4-1.4 5.4z" fill="#fff6e6"/><path d="M22.6 25h2.8l-1.4 3z" fill="#fff6e6"/><path d="M16 29.5l4 2.4 4-2.4 4 2.4 4-2.4-1.2 4h-13.6z" fill="#fff6e6"/></svg></span></h2><span>武汉 → 南宁 · 一路的站</span></div>
+  <!-- HALLOWEEN-DECOR：故事页标题小南瓜印章（上一行 h2 内） -->
 
   <div class="mapcard">
     <div class="map-head"><span class="map-en">FOOTPRINT MAP · 3D 地球</span><span class="map-title">从武汉到南宁</span></div>
@@ -1510,5 +1541,41 @@ var ANNIS = [
 
 </script>
 <script>document.querySelectorAll(".record").forEach(function(r){r.addEventListener("click",function(e){if(e.target.closest("a"))return;r.classList.toggle("flipped");});});</script>
+<!-- ═══ HALLOWEEN-DECOR 2026 万圣节主题层开关 ═══
+     默认开启万圣节主题；点页眉按钮可切回经典（选择记在 localStorage）。
+     主题只切换装饰显隐与三处展示图，不改动任何数据。
+     整体撤除：删除本段 + 对应 CSS 段 + 所有 hwdec 元素 + #themeToggle 按钮 -->
+<script>
+(function(){
+  var KEY = 'ourarchive-theme';
+  var store = {
+    get: function(){ try { return localStorage.getItem(KEY); } catch(e){ return null; } },
+    set: function(v){ try { localStorage.setItem(KEY, v); } catch(e){} }
+  };
+  var SWAPS = [
+    { sel: '#xgCard img',                hw: 'assets/xiaoguai-ghost-halloween.jpg' },
+    { sel: '.members a.doudou img',      hw: 'assets/doudou-wizard-halloween.jpg' },
+    { sel: '#heroPh img.slide:first-child', hw: 'assets/halloween-laidabao-framed.jpg' }
+  ];
+  SWAPS.forEach(function(s){ var el = document.querySelector(s.sel); if(el) s.orig = el.getAttribute('src'); });
+  var btn = document.getElementById('themeToggle');
+  function apply(on){
+    document.body.classList.toggle('hw-on', on);
+    SWAPS.forEach(function(s){
+      var el = document.querySelector(s.sel);
+      if(el && s.orig) el.src = on ? s.hw : s.orig;
+    });
+    if(btn){
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      var t = btn.querySelector('span');
+      if(t) t.textContent = on ? '切回经典' : '万圣节主题';
+    }
+    store.set(on ? 'halloween' : 'classic');
+  }
+  apply(store.get() !== 'classic');
+  if(btn) btn.addEventListener('click', function(){ apply(!document.body.classList.contains('hw-on')); });
+})();
+</script>
 </body>
 </html>
