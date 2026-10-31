@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>足迹 · 3D 地球</title>
+<style>
+  html, body { margin:0; padding:0; height:100%; overflow:hidden;
+    background: radial-gradient(120% 90% at 50% 30%, #10263d 0%, #081627 55%, #040b14 100%);
+    font-family: -apple-system, "PingFang SC", "Noto Sans CJK SC", sans-serif; }
+  #scene { position:absolute; inset:0; touch-action:none; }
+  #fallback { position:absolute; inset:0; display:none; align-items:center; justify-content:center; }
+  #fallback img { width:100%; height:100%; object-fit:contain; }
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div id="fallback"><img src="globe-fallback.jpg" alt="足迹地图"></div>
+<script src="three.min.js"></script>
+<script>
+(function () {
+  var container = document.getElementById('scene');
+  if (!window.THREE) { document.getElementById('fallback').style.display = 'flex'; return; }
+
+  var R = 50;
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(38, 1, 0.1, 2000);
+  camera.position.set(0, 0, 180);
+
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  } catch (e) {
+    document.getElementById('fallback').style.display = 'flex';
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  container.appendChild(renderer.domElement);
+
+  var group = new THREE.Group();
+  scene.add(group);
+
+  // lights
+  scene.add(new THREE.AmbientLight(0xbfd4e6, 0.78));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.88);
+  sun.position.set(-140, 90, 130);
+  scene.add(sun);
+  var rim = new THREE.DirectionalLight(0x6fb7ff, 0.5);
+  rim.position.set(120, -40, -100);
+  scene.add(rim);
+
+  // earth
+  var loader = new THREE.TextureLoader();
+  var earth = new THREE.Mesh(
+    new THREE.SphereGeometry(R, 72, 72),
+    new THREE.MeshPhongMaterial({
+      map: loader.load('earth-texture.png'),
+      specularMap: loader.load('earth-spec.png'),
+      specular: new THREE.Color(0x1a3c52),
+      shininess: 10
+    })
+  );
+  group.add(earth);
+
+  // atmosphere (fresnel glow)
+  var atmMat = new THREE.ShaderMaterial({
+    vertexShader: 'varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'varying vec3 vN; void main(){ float i = pow(0.68 - dot(vN, vec3(0.0, 0.0, 1.0)), 3.5); gl_FragColor = vec4(0.35, 0.62, 1.0, 1.0) * i * 1.4; }',
+    blending: THREE.AdditiveBlending, side: THREE.BackSide, transparent: true, depthWrite: false
+  });
+  var atm = new THREE.Mesh(new THREE.SphereGeometry(R * 1.22, 72, 72), atmMat);
+  scene.add(atm);
+
+  // stars
+  (function stars() {
+    var n = 500, pos = new Float32Array(n * 3);
+    for (var i = 0; i < n; i++) {
+      var u = Math.random() * 2 - 1, th = Math.random() * Math.PI * 2;
+      var s = Math.sqrt(1 - u * u), rr = 620 + Math.random() * 260;
+      pos.set([rr * s * Math.cos(th), rr * u, rr * s * Math.sin(th)], i * 3);
+    }
+    var g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    var m = new THREE.PointsMaterial({ color: 0xa9c8e8, size: 1.6, sizeAttenuation: false, transparent: true, opacity: 0.75 });
+    scene.add(new THREE.Points(g, m));
+  })();
+
+  function latLonToVec3(lat, lon, r) {
+    var phi = (90 - lat) * Math.PI / 180;
+    var theta = (lon + 180) * Math.PI / 180;
+    return new THREE.Vector3(
+      -r * Math.sin(phi) * Math.cos(theta),
+      r * Math.cos(phi),
+      r * Math.sin(phi) * Math.sin(theta)
+    );
+  }
+
+  var CITIES = [
+    { name: '武汉', sub: '华夏理工学院', lat: 30.467488, lon: 114.408984 },
+    { name: '北京', sub: '鸟巢', lat: 39.993330, lon: 116.395784 },
+    { name: '南宁', sub: '我们的家', lat: 22.817700, lon: 108.366407 }
+  ];
+  var GOLD = 0xf5b942;
+
+  function makeLabel(city) {
+    var c = document.createElement('canvas');
+    c.width = 512; c.height = 256;
+    var g = c.getContext('2d');
+    g.textAlign = 'center';
+    g.lineJoin = 'round';
+    g.font = '700 104px "PingFang SC", "Noto Sans CJK SC", sans-serif';
+    g.strokeStyle = 'rgba(6,18,30,0.92)'; g.lineWidth = 16;
+    g.strokeText(city.name, 256, 108);
+    g.fillStyle = '#ffffff';
+    g.fillText(city.name, 256, 108);
+    g.font = '400 54px "PingFang SC", "Noto Sans CJK SC", sans-serif';
+    g.strokeStyle = 'rgba(6,18,30,0.85)'; g.lineWidth = 10;
+    g.strokeText(city.sub, 256, 188);
+    g.fillStyle = 'rgba(178,205,226,1)';
+    g.fillText(city.sub, 256, 188);
+    var tex = new THREE.CanvasTexture(c);
+    tex.minFilter = THREE.LinearFilter;
+    var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+    sp.scale.set(13.5, 6.75, 1);
+    return sp;
+  }
+
+  var LABEL_TANGENT = [           // per-city label spread along the surface (east, north) in world units
+    { e: 9.5, n: 0.5 },          // 武汉 -> east
+    { e: 5.0, n: 2.5 },           // 北京 -> north-east
+    { e: -6.5, n: -5.0 }          // 南宁 -> south-west
+  ];
+  var cityObjs = [];
+  CITIES.forEach(function (city, i) {
+    var p = latLonToVec3(city.lat, city.lon, R);
+    var dot = new THREE.Mesh(
+      new THREE.SphereGeometry(1.05, 20, 20),
+      new THREE.MeshBasicMaterial({ color: GOLD })
+    );
+    dot.position.copy(p);
+    group.add(dot);
+    var halo = new THREE.Mesh(
+      new THREE.SphereGeometry(2.1, 20, 20),
+      new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.28 })
+    );
+    halo.position.copy(p);
+    group.add(halo);
+    var nrm = p.clone().normalize();
+    var east = nrm.clone().cross(new THREE.Vector3(0, 1, 0)).normalize();
+    var north = east.clone().cross(nrm).normalize();
+    var anchor = p.clone()
+      .add(east.multiplyScalar(LABEL_TANGENT[i].e))
+      .add(north.multiplyScalar(LABEL_TANGENT[i].n))
+      .normalize().multiplyScalar(R + 8.5);
+    var label = makeLabel(city);
+    label.position.copy(anchor);
+    group.add(label);
+    cityObjs.push({ p: p, label: label, halo: halo });
+  });
+
+  // arcs
+  function arcPoints(a, b, lift) {
+    var pts = [];
+    var va = a.clone().normalize(), vb = b.clone().normalize();
+    var Om = Math.acos(THREE.MathUtils.clamp(va.dot(vb), -1, 1));
+    for (var i = 0; i <= 60; i++) {
+      var t = i / 60;
+      var k0 = Math.sin((1 - t) * Om) / Math.sin(Om);
+      var k1 = Math.sin(t * Om) / Math.sin(Om);
+      var v = va.clone().multiplyScalar(k0).add(vb.clone().multiplyScalar(k1)).normalize();
+      v.multiplyScalar(R * (1 + lift * Math.sin(Math.PI * t)));
+      pts.push(v);
+    }
+    return pts;
+  }
+  var pulses = [];
+  [[0, 1], [1, 2]].forEach(function (pair, idx) {
+    var pts = arcPoints(cityObjs[pair[0]].p, cityObjs[pair[1]].p, 0.14);
+    var curve = new THREE.CatmullRomCurve3(pts);
+    var tube = new THREE.Mesh(
+      new THREE.TubeGeometry(curve, 72, 0.42, 8, false),
+      new THREE.MeshBasicMaterial({ color: GOLD })
+    );
+    group.add(tube);
+    var pulse = new THREE.Mesh(
+      new THREE.SphereGeometry(1.25, 16, 16),
+      new THREE.MeshBasicMaterial({ color: 0xffe9b0 })
+    );
+    group.add(pulse);
+    pulses.push({ curve: curve, mesh: pulse, off: idx * 0.45 });
+  });
+
+  // orientation: face the Wuhan-Beijing-Nanning triangle
+  group.rotation.y = 2.75;
+  var targetRY = 2.75, targetRX = 0.12;
+  group.rotation.x = targetRX;
+
+  // interaction
+  var dragging = false, px = 0, py = 0, lastInteract = 0;
+  function onDown(x, y) { dragging = true; px = x; py = y; lastInteract = performance.now(); }
+  function onMove(x, y) {
+    if (!dragging) return;
+    targetRY += (x - px) * 0.005;
+    targetRX += (y - py) * 0.003;
+    targetRX = Math.max(-0.55, Math.min(0.62, targetRX));
+    px = x; py = y; lastInteract = performance.now();
+  }
+  function onUp() { dragging = false; lastInteract = performance.now(); }
+  var el = renderer.domElement;
+  el.addEventListener('pointerdown', function (e) { onDown(e.clientX, e.clientY); });
+  window.addEventListener('pointermove', function (e) { onMove(e.clientX, e.clientY); });
+  window.addEventListener('pointerup', onUp);
+
+  function resize() {
+    var w = container.clientWidth, h = container.clientHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var camDir = new THREE.Vector3();
+  function animate(now) {
+    requestAnimationFrame(animate);
+    if (!dragging && now - lastInteract > 2600) targetRY += 0.0016;
+    group.rotation.y += (targetRY - group.rotation.y) * 0.07;
+    group.rotation.x += (targetRX - group.rotation.x) * 0.07;
+    camera.getWorldDirection(camDir);
+    cityObjs.forEach(function (o, i) {
+      var world = o.p.clone().applyEuler(group.rotation);
+      var facing = world.normalize().dot(camDir.clone().negate());
+      var op = THREE.MathUtils.clamp((facing - 0.12) / 0.35, 0, 1);
+      o.label.material.opacity = op;
+      var s = 1 + 0.18 * Math.sin(now * 0.003 + i * 2.1);
+      o.halo.scale.setScalar(s);
+    });
+    pulses.forEach(function (pl) {
+      var t = (now * 0.00009 + pl.off) % 1;
+      pl.mesh.position.copy(pl.curve.getPoint(t));
+    });
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
