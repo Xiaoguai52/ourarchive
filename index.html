@@ -344,6 +344,13 @@ body.hw-on .hwdec-mini{display:inline-flex}
 @media (prefers-reduced-motion: no-preference){
   body.hw-on .hwdec-stamp,body.hw-on .hwdec-mini{animation:stampIn .45s cubic-bezier(.2,1.55,.4,1) both}
 }
+/* 万圣节主题动效：三处换图的视频版（视频元素由文末 HALLOWEEN-DECOR 脚本按主题状态装卸；
+   成员卡视频裹在 .hwvid-wrap 里与头像同尺寸同圆角，封面视频覆在第一张幻灯上随轮播淡入淡出；
+   切回经典或 reduced-motion 时不装载视频，只显示静态图） */
+.hwvid-wrap{position:relative;display:block;width:52px;height:52px;border-radius:50%;overflow:hidden;flex:none}
+.hwvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+#heroPh .hwvid{z-index:1;opacity:0;transition:opacity .18s ease}
+body.hw-on #heroPh img.slide:first-child.on ~ .hwvid{opacity:1;transition:opacity 1s ease}
 /* 万圣节主题切换按钮（页眉，与装饰层同属一层） */
 .hwdec-toggle{flex:none;display:inline-flex;align-items:center;gap:5px;margin-left:10px;padding:5px 11px;border:1.6px solid #dd7a26;border-radius:999px;background:rgba(255,251,243,.85);color:#dd7a26;font-size:12px;font-weight:700;letter-spacing:.05em;cursor:pointer;font-family:inherit}
 .hwdec-toggle svg{width:15px;height:15px;flex:none}
@@ -1544,6 +1551,8 @@ var ANNIS = [
 <!-- ═══ HALLOWEEN-DECOR 2026 万圣节主题层开关 ═══
      默认开启万圣节主题；点页眉按钮可切回经典（选择记在 localStorage）。
      主题只切换装饰显隐与三处展示图，不改动任何数据。
+     三处展示图在主题开启时升级为视频版（成员卡两处裹覆、封面覆在第一张幻灯上随轮播显隐）；
+     切回经典即卸载视频恢复静态原图；prefers-reduced-motion 时不装载视频，只显示静态万圣节图。
      整体撤除：删除本段 + 对应 CSS 段 + 所有 hwdec 元素 + #themeToggle 按钮 -->
 <script>
 (function(){
@@ -1552,18 +1561,77 @@ var ANNIS = [
     get: function(){ try { return localStorage.getItem(KEY); } catch(e){ return null; } },
     set: function(v){ try { localStorage.setItem(KEY, v); } catch(e){} }
   };
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var SWAPS = [
-    { sel: '#xgCard img',                hw: 'assets/xiaoguai-ghost-halloween.jpg' },
-    { sel: '.members a.doudou img',      hw: 'assets/doudou-wizard-halloween.jpg' },
-    { sel: '#heroPh img.slide:first-child', hw: 'assets/halloween-laidabao-framed.jpg' }
+    { sel: '#xgCard img',                hw: 'assets/xiaoguai-ghost-halloween.jpg',  vid: 'assets/xiaoguai-ghost-halloween.mp4' },
+    { sel: '.members a.doudou img',      hw: 'assets/doudou-wizard-halloween.jpg',   vid: 'assets/doudou-wizard-halloween.mp4' },
+    { sel: '#heroPh img.slide:first-child', hw: 'assets/halloween-laidabao-framed.jpg', vid: 'assets/halloween-laidabao-framed.mp4', hero: true }
   ];
-  SWAPS.forEach(function(s){ var el = document.querySelector(s.sel); if(el) s.orig = el.getAttribute('src'); });
+  SWAPS.forEach(function(s){ s.el = document.querySelector(s.sel); if(s.el) s.orig = s.el.getAttribute('src'); });
+  var heroSwap = null;
+  SWAPS.forEach(function(s){ if(s.hero) heroSwap = s; });
+
+  function tryPlay(v){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
+  function makeVideo(s){
+    var v = document.createElement('video');
+    v.className = 'hwvid';
+    v.muted = true;
+    v.loop = true;
+    v.autoplay = !s.hero;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.poster = s.hw;
+    v.preload = 'auto';
+    v.src = s.vid;
+    v.setAttribute('aria-hidden', 'true');
+    return v;
+  }
+  function syncHero(){
+    if(!heroSwap || !heroSwap.vel) return;
+    if(document.body.classList.contains('hw-on') && heroSwap.el && heroSwap.el.classList.contains('on')) tryPlay(heroSwap.vel);
+    else heroSwap.vel.pause();
+  }
+  function mountVideo(s){
+    if(reduced || s.vel || !s.el) return;
+    var v = makeVideo(s);
+    s.vel = v;
+    if(s.hero){
+      s.el.parentNode.appendChild(v);
+      syncHero();
+    } else {
+      var wrap = document.createElement('span');
+      wrap.className = 'hwvid-wrap';
+      s.el.parentNode.insertBefore(wrap, s.el);
+      wrap.appendChild(s.el);
+      wrap.appendChild(v);
+      tryPlay(v);
+    }
+  }
+  function unmountVideo(s){
+    if(!s.vel) return;
+    var v = s.vel; s.vel = null;
+    try { v.pause(); } catch(e){}
+    if(s.hero){
+      if(v.parentNode) v.parentNode.removeChild(v);
+    } else {
+      var wrap = v.parentNode;
+      if(wrap && wrap.parentNode){
+        wrap.parentNode.insertBefore(s.el, wrap);
+        wrap.parentNode.removeChild(wrap);
+      }
+    }
+    v.removeAttribute('src');
+    try { v.load(); } catch(e){}
+  }
+  if(heroSwap && heroSwap.el && 'MutationObserver' in window){
+    new MutationObserver(syncHero).observe(heroSwap.el, { attributes: true, attributeFilter: ['class'] });
+  }
   var btn = document.getElementById('themeToggle');
   function apply(on){
     document.body.classList.toggle('hw-on', on);
     SWAPS.forEach(function(s){
-      var el = document.querySelector(s.sel);
-      if(el && s.orig) el.src = on ? s.hw : s.orig;
+      if(s.el && s.orig) s.el.src = on ? s.hw : s.orig;
+      if(on) mountVideo(s); else unmountVideo(s);
     });
     if(btn){
       btn.classList.toggle('on', on);
