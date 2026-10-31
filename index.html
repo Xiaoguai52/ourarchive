@@ -1520,7 +1520,7 @@ var ANNIS = [
     cur = (n + slides.length) % slides.length;
     slides[cur].classList.add('on'); if(dots[cur]) dots[cur].classList.add('on');
   }
-  function play(){ if(timer) clearInterval(timer); timer = setInterval(function(){ go(cur+1); }, 5000); }
+  function play(){ if(timer) clearInterval(timer); timer = setInterval(function(){ if(cur === 0 && window.__hwHeroAdvanceBlocked && window.__hwHeroAdvanceBlocked()) return; go(cur+1); }, 5000); }
   dots.forEach(function(d, i){
     d.addEventListener('click', function(){ go(i); play(); });
   });
@@ -1571,6 +1571,28 @@ var ANNIS = [
   var heroSwap = null;
   SWAPS.forEach(function(s){ if(s.hero) heroSwap = s; });
 
+  /* 封面轮播等视频：主题开启且停在第一张（赖大宝相框视频）时，视频未 canplay、
+     或尚未完整播满一遍（按 duration 累计实际播放时长）之前，轮播不得自动切走。
+     轮播脚本每拍先问 window.__hwHeroAdvanceBlocked()；主题关闭 / reduced-motion /
+     视频未装载时一律不拦，轮播节奏与经典版完全一致。视频自带 preload=auto，
+     加载期间第一张显示其静态相框图（poster 与幻灯 src 同为相框版），不空白。 */
+  var heroCanPlay = false, heroPlayStart = null, heroPlayedMs = 0;
+  function heroPlayedTotal(){
+    return heroPlayedMs + (heroPlayStart !== null ? Date.now() - heroPlayStart : 0);
+  }
+  function heroResetHold(){
+    heroCanPlay = false; heroPlayStart = null; heroPlayedMs = 0;
+  }
+  window.__hwHeroAdvanceBlocked = function(){
+    if(reduced) return false;
+    if(!document.body.classList.contains('hw-on')) return false;
+    if(!heroSwap || !heroSwap.vel) return false;
+    if(!heroCanPlay) return true;
+    var d = heroSwap.vel.duration;
+    var need = (isFinite(d) && d > 0) ? d * 1000 : 10000;
+    return heroPlayedTotal() < need;
+  };
+
   function tryPlay(v){ var p = v.play(); if(p && p.catch) p.catch(function(){}); }
   function makeVideo(s){
     var v = document.createElement('video');
@@ -1596,6 +1618,11 @@ var ANNIS = [
     var v = makeVideo(s);
     s.vel = v;
     if(s.hero){
+      v.addEventListener('canplay', function(){ heroCanPlay = true; });
+      v.addEventListener('playing', function(){ if(heroPlayStart === null) heroPlayStart = Date.now(); });
+      v.addEventListener('pause', function(){
+        if(heroPlayStart !== null){ heroPlayedMs += Date.now() - heroPlayStart; heroPlayStart = null; }
+      });
       s.el.parentNode.appendChild(v);
       syncHero();
     } else {
@@ -1610,6 +1637,7 @@ var ANNIS = [
   function unmountVideo(s){
     if(!s.vel) return;
     var v = s.vel; s.vel = null;
+    if(s.hero) heroResetHold();
     try { v.pause(); } catch(e){}
     if(s.hero){
       if(v.parentNode) v.parentNode.removeChild(v);
